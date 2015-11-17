@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/static/admin/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/Js/common.js"></script>
+
+ 
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<form id="form1" action="{:U('Setup/update')}" method="post" class="definewidth m20 pageForm required-validate">
+    <input type="hidden" name="mid" value="<?php echo $_SESSION [C ( 'USER_AUTH_KEY' )]; ?>"/>   
+
+    <table class="table table-bordered table-hover definewidth m10">
+		<tr>
+            <td class="tableleft" width="10%">性别</td>
+            <td>
+                <input type="radio" name="sex" value="男"
+                    <eq name="vo.sex" value='男'>checked</eq> /> 男
+              <input type="radio" name="sex" value="女"
+                    <eq name="vo.sex" value='女'>checked</eq> /> 女
+              <input type="radio" name="sex" value="保密"
+                    <eq name="vo.sex" value='保密'>checked</eq> /> 保密
+            </td>
+        </tr>
+		
+		
+		<tr>
+            <td class="tableleft">昵称<span class="text-error">(*)</span></td>
+            <td> <input type="text" name="uname" value="{$vo.uname}" class="required"/></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">QQ</td>
+            <td> <input type="text" name="qq"  value="{$vo.qq}"/></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">手机<span class="text-error">(*)</span></td>
+            <td> <input type="text" name="mobile"  value="{$vo.mobile}" class="required number"  /></td>
+        </tr>	
+
+        <tr>
+            <td class="tableleft">邮箱<span class="text-error">(*)</span></td>
+            <td> <input type="text" name="email"  value="{$member.email}" class="required email" /></td>
+        </tr> 
+
+        <tr>
+            <td class="tableleft">地址</td>
+            <td> <input type="text" name="address"  value="{$vo.address}"/></td>
+        </tr>   
+
+		
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="button" id="sub" class="btn btn-primary" type="button">保存</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<include file="Public:footer" />
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>{$Think.config.SITENAME} - 注册</title>
+		<link rel='stylesheet' id='wp-admin-css'  href='__PUBLIC__/static/admin/wp-admin.min.css?ver=3.7.1' type='text/css' media='all' />
+		<link rel='stylesheet' id='buttons-css'  href='__PUBLIC__/static/admin/buttons.min.css?ver=3.7.1' type='text/css' media='all' />
+		<link rel='stylesheet' id='colors-fresh-css'  href='__PUBLIC__/static/admin/colors-fresh.min.css?ver=3.7.1' type='text/css' media='all' />
+		<link rel='stylesheet' id='colors-fresh-css'  href='__PUBLIC__/static/Css/misc.css' type='text/css' media='all' />
+
+		<script type="text/javascript" src="__PUBLIC__/static/admin/Js/jquery.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/static/Js/misc.js"></script>
+		<meta name='robots' content='noindex,nofollow' />
+		<style type="text/css">
+			.text-error{color:#a10333;}
+		</style>
+	</head>
+	<body class="login login-action-login wp-core-ui">
+		<div id="login">
+			
+			
+			<form name="loginform" id="form1" action="" method="post">
+				<p>
+				<label for="user_login">用户名<span class="text-error">(*)</span><br />
+					<input type="text" name="userid" id="userid" class="input required alphanumeric" value="" size="20" /></label>
+					</p>
+					<p>
+					<label for="user_pass">登陆密码<span class="text-error">(*)</span><br />
+						<input type="password" name="userpwd" id="userpwd" class="input userpwd" value=""  onkeyup="setPasswordLevel(this, document.getElementById('passwordLevel'));" /></label>
+						</p>
+						
+						<p>
+						<label for="user_login">密码强度 <input id="passwordLevel" class="rank r0" disabled="disabled" name="Input">
+						<br/>&nbsp;
+					</label>
+					</p>
+					<p>
+					<label for="user_pass">确认密码<span class="text-error">(*)</span><br />
+						<input type="password" name="userpwd2" id="userpwd2" class="input userpwd2" value=""  /></label>
+						</p>
+						<p>
+						<label for="user_pass">电子邮箱<span class="text-error">(*)</span><br />
+							<input type="text" name="email" id="email" class="input required email" value=""  /></label>
+							</p>
+							<p class="submit">
+							<a href="{:U("Public/index")}">登陆</a>
+							<input type="button" name="wp-submit" id="sub" class="button button-primary button-large" value="注册" />
+							</p>
+						</form>
+						<include file="Public:footer" />
+
+
+						<script type="text/javascript">
+						jQuery.validator.addClassRules({
+						userpwd: {
+							  minlength: 1,
+				              required: true,
+						    },
+						userpwd2: {
+							  minlength: 1,
+				              required: true,
+						      equalTo: "#userpwd"
+						    }
+						});  						
+						function wp_attempt_focus(){
+						setTimeout( function(){ try{
+						d = document.getElementById('user_login');
+						d.focus();
+						d.select();
+						} catch(e){}
+						}, 200);
+						}
+						wp_attempt_focus();
+						if(typeof wpOnload=='function')wpOnload();
+						</script>
+						
+					</div>
+					
+					<div class="clear"></div>
+				</body>
+			</html>

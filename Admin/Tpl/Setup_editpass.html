@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/static/admin/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/Js/common.js"></script>
+
+ 
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<form action="" id="form1" method="post" class="definewidth m20">
+<input type="hidden" name="id" value="{$user.id}" />
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">旧密码</td>
+            <td><input type="password" name="password" value="" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">新密码</td>
+            <td><input type="password" name="newpassword" class="pwd1"/> (不修改密码请保留此项为空)</td>
+        </tr>
+        <tr>
+            <td class="tableleft">重复新密码</td>
+            <td><input type="password" name="repassword" class="pwd2" /> (不修改密码请保留此项为空)</td>
+        </tr>
+     
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="button" id="sub" class="btn btn-primary" type="button">保存</button>				 
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<include file="Public:footer" />
+
+<script type="text/javascript">
+jQuery.validator.addClassRules({
+  pwd1: {
+    minlength: 6
+  },
+  pwd2: {
+    minlength: 6
+  }
+});  
+</script>
+
+
+</body>
+</html>
