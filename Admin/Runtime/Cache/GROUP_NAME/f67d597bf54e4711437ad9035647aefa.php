@@ -221,7 +221,7 @@
                             <td>
                               <input name="id" value="<?php echo ($vo['id']); ?>" type="checkbox" onclick="addids(this)"></td>
                             <td><?php echo ($vo['id']); ?></td>
-                             <td><?php echo ($vo['title']); ?></td>
+                             <td><a href="/Home/index.php?m=Index&a=article&id=<?php echo ($vo["id"]); ?>" target="_blank"><?php echo ($vo['title']); ?></a></td>
                              <td>
                                 <?php echo (date("Y-m-d",$vo['pubdate'])); ?></td>
                               <td>
