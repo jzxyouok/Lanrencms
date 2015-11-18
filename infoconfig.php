@@ -1,7 +1,7 @@
 <?php
  $infoconfig	= array (
   'URL_MODEL' => 1,
-  'site_url' => 'http://f.b.26wz.com',
+  'site_url' => 'http://buluo.lanrenmb.com',
   'up_size' => '8000',
   'up_exts' => 'jpeg,jpg,png,mp3,mp4',
   'up_path' => './data/upload',
@@ -16,7 +16,7 @@
   'TOKEN_NAME' => '__hash__',
   'TOKEN_TYPE' => 'md5',
   'TOKEN_RESET' => true,
-  'SITENAME' => '懒人布落',
+  'SITENAME' => '懒人部落',
   'server_key' => 'bc9ed510a91c14331cf2f6ce4169807b',
   'ischeckuser' => 'false',
   'reg_needmp' => 'false',
@@ -33,7 +33,7 @@
   'countsz' => '',
   'ucenter_db_set' => '',
   'ucenter_web_set' => '',
-  'site_name' => '懒人布落',
+  'site_name' => '懒人部落',
   'site_title' => NULL,
   'site_my' => NULL,
   'server_topdomain' => NULL,
