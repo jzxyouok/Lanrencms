@@ -1,7 +1,7 @@
 <?php
  $infoconfig	= array (
   'URL_MODEL' => 1,
-  'site_url' => 'http://buluo.lanrenmb.com',
+  'site_url' => 'http://f.b.26wz.com',
   'up_size' => '8000',
   'up_exts' => 'jpeg,jpg,png,mp3,mp4',
   'up_path' => './data/upload',
