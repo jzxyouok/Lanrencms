@@ -15,7 +15,7 @@
 			if(!$P->create()) {
 				$this->error($P->getError());
 			}else{
-				if(!empty($this->_param("pwd"))){
+				if(!empty($_POST["pwd"]))){
 					$P->pwd = md5($this->_param("pwd"));
 				}
 			    $this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
