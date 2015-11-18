@@ -39,7 +39,7 @@ class PublicAction extends Action {
 
 			$this->assign('jumpUrl',C('USER_AUTH_GATEWAY'));
 
-			$this->error('没有登录');
+			$this->error('没有登录'); 
 
 		}
 
