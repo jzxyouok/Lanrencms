@@ -1,2 +1,4 @@
-
 infoconfig.php
+mysqlconf.php
+Admin/Runtime/
+Home/Runtime/
