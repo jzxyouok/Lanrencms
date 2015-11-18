@@ -1,5 +1,6 @@
 <?php
 return array(
+	'LOG_RECORD'=>false,  // 进行日志记录
 	'SHOW_RUN_TIME'=>false,			// 运行时间显示
 	'SHOW_ADV_TIME'=>false,			// 显示详细的运行时间
 	'SHOW_DB_TIMES'=>false,			// 显示数据库查询和写入次数
