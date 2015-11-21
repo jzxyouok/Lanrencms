@@ -9,12 +9,18 @@ class IndexAction extends Action {
 
 	public function type(){
 
-		        //列表过滤器，生成查询Map对象
 				if(!empty($_GET['typeid'])){
-					 $map['typeid'] = array('eq',$_GET['typeid']);
-					 $type = M("Arctype")->where("id=".$_GET['typeid'])->find();
- 					 $this->assign ( 'type', $type );
+					 $tmp_id = getType2($this->_param("typeid")); //,1,2,3
+					 if($tmp_id){
+					 	$tmp_id = $this->_param("typeid").$tmp_id;
+					 }else{
+					 	$tmp_id = $this->_param("typeid");
+					 }
+					 $map['typeid'] = array('in', explode ( ',', $tmp_id ) );
 				}
+			    $map1['arcrank'] = array('eq',0);
+			    $map2 = array_merge($map1, $map);
+
 
 			    //读取数据库模块列表生成菜单项
 				$model = M ("Archives" );
@@ -35,7 +41,7 @@ class IndexAction extends Action {
 				}
 				//取得满足条件的记录数
 				$_REQUEST ['listRows'] = 20;
-				$count = $model->where ( $map )->count ();
+				$count = $model->where ( $map2 )->count ();
 				if ($count > 0) {
 					import ( "@.ORG.Util.Page" );
 					//创建分页对象
@@ -46,7 +52,7 @@ class IndexAction extends Action {
 					}
 					$p = new Page ( $count, $listRows );
 					//分页查询数据
-					$voList = $model->where($map)->order( "`" . $order . "` " . $sort)->limit($p->firstRow . ',' . $p->listRows)->select ( );
+					$voList = $model->where($map2)->order( "`" . $order . "` " . $sort)->limit($p->firstRow . ',' . $p->listRows)->select ( );
 					//echo $model->getlastsql();
 					//分页跳转的时候保证查询条件
 					foreach ( $map as $key => $val ) {
@@ -77,7 +83,15 @@ class IndexAction extends Action {
 				$this->assign ( 'numPerPage', $p->listRows );
 				$this->assign ( 'currentPage', !empty($_REQUEST[C('VAR_PAGE')])?$_REQUEST[C('VAR_PAGE')]:1);
 
-				$this->display ();				
+
+				$template = '';
+				if(!empty($_GET['typeid'])){
+					 $type = M("Arctype")->where("id=".$_GET['typeid'])->find();
+ 					 $this->assign ( 'type', $type );
+ 					 $template = str_replace(".html","",$type['templist']);
+
+				}
+				$this->display ($template);				
 
 	}
 
@@ -86,12 +100,19 @@ class IndexAction extends Action {
 		$model = M ( "Archives" );
         $id = $_REQUEST ["id"];
 		$vo = $model->where("id = ".$id)->find();
-		$model = M ( "Addonarticle" );
+		if($vo['arcrank'] == "-1"){
+			$this->error('文档未审核！');
+		}
+
+		$model = M ( "Addon".$vo['channel'] );
 		$vo1 = $model->where("aid = ".$id)->find();
 		if(empty($vo1)){$vo1 = array();}
 		$result = array_merge($vo, $vo1);
 		$this->assign ( 'vo', $result );
-	    $this->display();
+
+		$type = M ( "Arctype" )->where("id=".$vo['typeid'])->find();
+	    $this->assign ( 'type', $type );
+	    $this->display(str_replace(".html","",$type['temparticle']));
 	}
 
 }

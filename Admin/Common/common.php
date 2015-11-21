@@ -155,12 +155,13 @@ function httpPost($url,$params)
 
 
 //递归 获取分类
-function getJG($id=0,$reid=0,$tt="",$select=""){
+function getJG($id=0,$reid=0,$tt="",$select="",$channel=''){
     $jg = M("Arctype");
     if($reid ==0 && $id == 0){
-        $list = $jg->where("topid=0")->field("id,reid,typename")->select();
+        if($channel){$channel = ' and channeltype='.$channel;}
+        $list = $jg->where("topid=0".$channel)->field("id,reid,typename")->select();
         foreach ($list as $value) {
-            $tmp = getJG(0,$value['id'],'&nbsp;&nbsp;─',$select);
+            $tmp = getJG(0,$value['id'],'&nbsp;&nbsp;─',$select,$where);
             $tmp1 = '';
             if($select == $value['id']){
                 $tmp1 = 'selected';
@@ -169,8 +170,9 @@ function getJG($id=0,$reid=0,$tt="",$select=""){
             $arr .= "<option value='{$value['id']}' {$tmp1}>{$value['typename']}</option>".$tmp;
         }
     }elseif ($id > 0 && $reid==0) {
-        $vo = $jg->where("id=$id")->field("id,reid,typename")->find();
-        $tmp = getJG(0,$vo['id'],'&nbsp;&nbsp;─',$select);
+        if($channel){$channel = ' and channeltype='.$channel;}
+        $vo = $jg->where("id=$id".$channel)->field("id,reid,typename")->find();
+        $tmp = getJG(0,$vo['id'],'&nbsp;&nbsp;─',$select,$channel);
         $tmp1 = '';
         if($select == $vo['id']){
             $tmp1 = 'selected';
@@ -178,9 +180,10 @@ function getJG($id=0,$reid=0,$tt="",$select=""){
         $arr .= "<option value='{$vo['id']}' {$tmp1}>{$vo['typename']}</option>".$tmp;      
     }
     else{
-        $list = $jg->where("reid=".$reid)->field("id,reid,typename")->select();
+        if($channel){$channel = ' and channeltype='.$channel;}
+        $list = $jg->where("reid=".$reid.$channel)->field("id,reid,typename")->select();
         foreach ($list as $value) {
-            $tmp = getJG(0,$value['id'],'&nbsp;&nbsp;'.$tt.'─',$select);
+            $tmp = getJG(0,$value['id'],'&nbsp;&nbsp;'.$tt.'─',$select,$channel);
             $tmp1 = '';
             if($select == $value['id']){
                 $tmp1 = 'selected';
@@ -206,25 +209,27 @@ function deleteJG2($id=0){
 
 
 
+
+
 //递归 获取分类
 function getJG2($id=0,$reid=0,$tt=""){
     $jg = M("Arctype");
     if($reid ==0 && $id == 0){
-        $list = $jg->where("topid=0")->field("id,sortrank,reid,topid,typename")->select();
+        $list = $jg->where("topid=0")->field("id,sortrank,reid,topid,typename,channeltype")->order("sortrank")->select();
         foreach ($list as $value) {
             $tmp = getJG2(0,$value['id'],'─');
-            $arr .='<tr><td>'.$value['id'].'</td><td>'.$value['sortrank'].'</td><td><a href="'.U("Type/article",array("typeid"=>$value["id"])).'">'.$value['typename'].'</a></td><td><a href="'.U("Type/add",array("reid"=>$value['id'],"topid"=>$value['id'])).'"><i class="fa fa-fw fa-plus"></i>增加子类</a> | <a title="编辑" href="'.U("Type/edit",array("id"=>$value['id'])).'"><i class="fa fa-fw fa-edit"></i></a> | <a onclick="return window.confirm(\'确定删除？\');" title="删除" href="'.U("Type/delete",array("id"=>$value['id'])).'"><i class="fa fa-fw fa-remove"></i></a></td></tr>'.$tmp;   
+            $arr .='<tr><td>'.$value['id'].'</td><td>'.$value['sortrank'].'</td><td><a href="'.U("Type/article",array("typeid"=>$value["id"],"channel"=>$value['channeltype'])).'">'.$value['typename'].'</a></td><td><a href="'.U("Type/add",array("reid"=>$value['id'],"topid"=>$value['id'])).'"><i class="fa fa-fw fa-plus"></i>增加子类</a> | <a title="编辑" href="'.U("Type/edit",array("id"=>$value['id'])).'"><i class="fa fa-fw fa-edit"></i></a> | <a onclick="return window.confirm(\'确定删除？\');" title="删除" href="'.U("Type/delete",array("id"=>$value['id'])).'"><i class="fa fa-fw fa-remove"></i></a></td></tr>'.$tmp;   
         }
     }elseif ($id > 0 && $reid==0) {
-        $vo = $jg->where("id=$id")->field("id,sortrank,reid,topid,typename")->find();
+        $vo = $jg->where("id=$id")->field("id,sortrank,reid,topid,typename,channeltype")->find();
         $tmp = getJG2(0,$vo['id'],'─');
-        $arr .='<tr><td>'.$vo['id'].'</td><td>'.$vo['sortrank'].'</td><td><a href="'.U("Type/article",array("typeid"=>$vo["id"])).'">'.$vo['typename'].'</a></td><td><a href="'.U("Type/add",array("reid"=>$vo['id'],"topid"=>$vo['topid'])).'"><i class="fa fa-fw fa-plus"></i>增加子类</a> | <a title="编辑" href="'.U("Type/edit",array("id"=>$vo['id'])).'"><i class="fa fa-fw fa-edit"></i></a> | <a onclick="return window.confirm(\'确定删除？\');" title="删除" href="'.U("Type/delete",array("id"=>$vo['id'])).'"><i class="fa fa-fw fa-remove"></i></a></td></tr>'.$tmp;   
+        $arr .='<tr><td>'.$vo['id'].'</td><td>'.$vo['sortrank'].'</td><td><a href="'.U("Type/article",array("typeid"=>$vo["id"],"channel"=>$vo['channeltype'])).'">'.$vo['typename'].'</a></td><td><a href="'.U("Type/add",array("reid"=>$vo['id'],"topid"=>$vo['topid'])).'"><i class="fa fa-fw fa-plus"></i>增加子类</a> | <a title="编辑" href="'.U("Type/edit",array("id"=>$vo['id'])).'"><i class="fa fa-fw fa-edit"></i></a> | <a onclick="return window.confirm(\'确定删除？\');" title="删除" href="'.U("Type/delete",array("id"=>$vo['id'])).'"><i class="fa fa-fw fa-remove"></i></a></td></tr>'.$tmp;   
     }
     else{
-        $list = $jg->where("reid=".$reid)->field("id,sortrank,reid,topid,typename")->select();
+        $list = $jg->where("reid=".$reid)->field("id,sortrank,reid,topid,typename,channeltype")->order("sortrank")->select();
         foreach ($list as $value) {
             $tmp = getJG2(0,$value['id'],$tt.'─');
-            $arr .='<tr><td>'.$value['id'].'</td><td>'.$value['sortrank'].'</td><td><a href="'.U("Type/article",array("typeid"=>$value["id"])).'">'.$tt.$value['typename'].'</a></td><td><a href="'.U("Type/add",array("reid"=>$value['id'],"topid"=>$value['topid'])).'"><i class="fa fa-fw fa-plus"></i>增加子类</a> | <a title="编辑" href="'.U("Type/edit",array("id"=>$value['id'])).'"><i class="fa fa-fw fa-edit"></i></a> | <a onclick="return window.confirm(\'确定删除？\');" title="删除" href="'.U("Type/delete",array("id"=>$value['id'])).'"><i class="fa fa-fw fa-remove"></i></a></td></tr>'.$tmp;   
+            $arr .='<tr><td>'.$value['id'].'</td><td>'.$value['sortrank'].'</td><td><a href="'.U("Type/article",array("typeid"=>$value["id"],"channel"=>$value['channeltype'])).'">'.$tt.$value['typename'].'</a></td><td><a href="'.U("Type/add",array("reid"=>$value['id'],"topid"=>$value['topid'])).'"><i class="fa fa-fw fa-plus"></i>增加子类</a> | <a title="编辑" href="'.U("Type/edit",array("id"=>$value['id'])).'"><i class="fa fa-fw fa-edit"></i></a> | <a onclick="return window.confirm(\'确定删除？\');" title="删除" href="'.U("Type/delete",array("id"=>$value['id'])).'"><i class="fa fa-fw fa-remove"></i></a></td></tr>'.$tmp;   
         }
     }
     return $arr;

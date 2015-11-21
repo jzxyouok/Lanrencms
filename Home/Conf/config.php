@@ -45,6 +45,8 @@ $config = array (
   'RBAC_ACCESS_TABLE'=>'access',
   'RBAC_NODE_TABLE'=>'node',
 
+  'TMPL_FILE_DEPR'  =>  '/', //模板文件MODULE_NAME与ACTION_NAME之间的分割符
+
 
 );
 

@@ -230,7 +230,16 @@ function getJG2($id=0,$reid=0,$tt=""){
     return $arr;
 }
 
-
+//递归  获取分类id下级所有分类
+function getType2($id=0){
+    $jg = M("Arctype");
+    $voList = $jg->where("reid=".$id)->field("id")->select();
+    foreach ($voList as $value) {
+       $tmp = getType2($value["id"]);
+       $result .=','.$value['id'].$tmp;
+     }
+    return $result;
+}
 
 
 

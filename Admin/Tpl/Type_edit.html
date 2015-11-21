@@ -88,6 +88,21 @@
                   <input type="hidden" name="id" value="{$vo.id}" >
                   <div class="box-body">
                     <div class="form-group">
+                      <label>频道模型</label>
+                      <select name="channeltype" class="form-control">
+                          <?php 
+                            $tmp = M("Channeltype")->field("id,typename")->select();
+                            foreach($tmp as $v){
+                              $select = '';
+                              if($v['id'] == $vo['channeltype']){
+                                $select = 'selected';
+                              }
+                              echo '<option value="'.$v['id'].'" '.$select.'> '.$v['typename'].'</option>';
+                            }
+                          ?>                      
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label>分类名称</label>
                       <input type="text" name="typename" class="form-control required"  value="{$vo.typename}">
                     </div>
@@ -95,6 +110,39 @@
                       <label>排序</label>
                       <input type="text" name="sortrank"  class="form-control required number"  value="{$vo.sortrank}">
                     </div>
+
+                    <div class="form-group">
+                      <label>SEO标题</label>
+                      <input type="text" name="seotitle" class="form-control"  value="{$vo.seotitle}">
+                    </div>
+
+                    <div class="form-group">
+                      <label>关键字</label>
+                      <input type="text" name="keywords" class="form-control"  value="{$vo.keywords}">
+                    </div>
+
+                    <div class="form-group">
+                      <label>栏目描述</label>
+                      <input type="text" name="description" class="form-control"  value="{$vo.description}">
+                    </div>
+
+                    <!-- 
+                    <div class="form-group">
+                      <label>封面模板</label>
+                      <input type="text" name="tempindex" class="form-control required"  value="{$vo.tempindex}">
+                    </div>
+                     -->
+
+                    <div class="form-group">
+                      <label>栏目模板</label>
+                      <input type="text" name="templist" class="form-control required"  value="{$vo.templist}">
+                    </div>
+                    <div class="form-group">
+                      <label>文章模板</label>
+                      <input type="text" name="temparticle" class="form-control required"  value="{$vo.temparticle}">
+                    </div>                                        
+
+
                   </div><!-- /.box-body -->
                   <div class="box-footer">
                     <button  id="sub" class="btn btn-primary">提交</button>

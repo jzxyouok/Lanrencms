@@ -17,7 +17,7 @@
 		$this->display ();	
 	}
 
-	public function Typeupdate(){
+	public function update(){
 			$P = D("Arctype");
 			if(!$P->create()) {
 				$this->error($P->getError());
@@ -33,7 +33,7 @@
 	}
 
 
-public function Typeinsert(){
+public function insert(){
 		$model = M ("Arctype");
 	    $this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
 		if(!$model->create()) {
@@ -67,7 +67,9 @@ public function delete() {
 				if(!empty($_GET['typeid'])){
 					 $map['typeid'] = array('eq',$_GET['typeid']);
 				}
-
+				if(!empty($_GET['channel'])){
+					 $map['channel'] = array('eq',$_GET['channel']);
+				}				
 			    //读取数据库模块列表生成菜单项
 				$model = M ("Archives" );
 
@@ -142,7 +144,7 @@ public function article_delete() {
 		$condition = array ("id" => array ('in', explode ( ',', $id ) ) );
 		$list=$model->where ( $condition )->delete();
 		if ($list!==false) {
-			$model = M ("Addonarticle");
+			$model = M ("Addon".$this->_param("channel"));
 			$condition = array ("aid" => array ('in', explode ( ',', $id ) ) );
 			$list=$model->where ( $condition )->delete();
 			$this->success ('删除成功！' );
@@ -154,36 +156,43 @@ public function article_delete() {
 }  
 
 
-
 public function article_edit() {
 	$model = M ( "Archives" );
 	$id = $_REQUEST ["id"];
 	$vo = $model->where("id = ".$id)->find();
 	$this->assign ( 'vo', $vo );
 
-	$model = M ( "Addonarticle" );
-	$vo1 = $model->where("aid = ".$id)->find();
-	$this->assign ( 'vo1', $vo1 );
+	$model = M ( "Addon".$vo['channel'] );
+	$addon = $model->where("aid = ".$id)->find();
+	$this->assign ( 'addon', $addon );
 
 	$this->display ();	
 }
 
 
 public function article_update(){
+		C('TOKEN_ON',false);
+		foreach ($_POST as $key => $value) {
+			if(is_array($_POST[$key])){
+				$_POST[$key] = implode(",", $value);
+			}
+		}		
 		$P = D("Archives");
 		if(!$P->create()) {
 			$this->error($P->getError());
 		}else{
 		    $this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
 			// 写入帐号数据
+			$P->pubdate = strtotime($this->_param("pubdate"));
+			$P->writer = $_SESSION["admin"]['userid'];
 			if($result	 =	 $P->save()) {
-				$ip	= get_client_ip();
-				$A = M("Addonarticle");		
-				$v = $A->where("aid=".$this->_param("id"))->find();
-				if($v){
-					$A->where("aid=".$this->_param("id"))->save(array("userip"=>$ip,"body"=>$this->_param("body")));
+				$addon = D("Addon".$this->_param("channel"));
+				if(!$addon->create()) {
+					$this->error($addon->getError());
 				}else{
-					$A->data(array("aid"=>$this->_param("id"),"userip"=>$ip,"body"=>$this->_param("body")))->add();
+					$addon->userip = get_client_ip();
+					$addon->aid = $this->_param("id");
+					$addon->save();
 				}
 				$this->success('修改成功！');
 			}else{
@@ -192,18 +201,29 @@ public function article_update(){
 	    }
 }
 
-
 public function article_insert(){
-		$model = M ("Archives");
+		C('TOKEN_ON',false);
+		foreach ($_POST as $key => $value) {
+			if(is_array($_POST[$key])){
+				$_POST[$key] = implode(",", $value);
+			}
+		}
+		$model = D ("Archives");
 	    $this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
 		if(!$model->create()) {
 			$this->error($model->getError());
 		}else{
 			$model->pubdate = strtotime($this->_param("pubdate"));
+			$model->writer = $_SESSION["admin"]['userid'];
 			if($result	 =	 $model->add()) {
-				$ip	= get_client_ip();
-				$A = M("Addonarticle");		
-				$A->data(array("aid"=>$result,"typeid"=>$this->_param("typeid"),"userip"=>$ip,"body"=>$this->_param("body")))->add();
+				$addon = D("Addon".$_POST['channel']);
+				if(!$addon->create()) {
+					$this->error($addon->getError());
+				}else{
+					$addon->userip = get_client_ip();
+					$addon->aid = $result;
+					$addon->add();
+				}
 				$this->success('添加成功！');
 			}else{
 				$this->error('添加失败！');

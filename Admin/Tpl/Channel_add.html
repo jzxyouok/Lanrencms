@@ -63,12 +63,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            分类管理
-            <small>分类</small>
+            频道管理
+            <small>列表</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-            <li><a href="#">分类</a></li>
+            <li><a href="#">频道管理</a></li>
             <li class="active">添加</li>
           </ol>
         </section>
@@ -81,65 +81,15 @@
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">添加</h3>
+                  <h3 class="box-title">添加频道</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="post" id="form1" action="{:U("Type/insert")}" class="pageForm required-validate">
-                  <input type="hidden" name="reid" value="<?php echo $_GET['reid'];?>" >
-                  <input type="hidden" name="topid" value="<?php echo $_GET['topid'];?>" >
+                <form role="form" method="post" id="form1" action="{:U("Channel/insert")}" class="pageForm required-validate">
                   <div class="box-body">
-
-                   <div class="form-group">
-                      <label>频道模型</label>
-                      <select name="channeltype" class="form-control">
-                          <?php 
-                            $tmp = M("Channeltype")->field("id,typename")->select();
-                            foreach($tmp as $v){
-                              echo '<option value="'.$v['id'].'"> '.$v['typename'].'</option>';
-                            }
-                          ?>                      
-                      </select>
-                    </div>
                     <div class="form-group">
-                      <label>分类名称</label>
+                      <label>频道名称</label>
                       <input type="text" name="typename" class="form-control required"  value="{$vo.typename}">
                     </div>
-                    <div class="form-group">
-                      <label>排序</label>
-                      <input type="text" name="sortrank"  class="form-control required number"  value="{$vo.sortrank}">
-                    </div>
-
-                    <div class="form-group">
-                      <label>SEO标题</label>
-                      <input type="text" name="seotitle" class="form-control"  value="{$vo.seotitle}">
-                    </div>
-
-                    <div class="form-group">
-                      <label>关键字</label>
-                      <input type="text" name="keywords" class="form-control"  value="{$vo.keywords}">
-                    </div>
-
-                    <div class="form-group">
-                      <label>栏目描述</label>
-                      <input type="text" name="description" class="form-control"  value="{$vo.description}">
-                    </div>
-
-                    <!-- 
-                    <div class="form-group">
-                      <label>封面模板</label>
-                      <input type="text" name="tempindex" class="form-control required"  value="{$vo.tempindex}">
-                    </div>
-                     -->
-
-                    <div class="form-group">
-                      <label>栏目模板</label>
-                      <input type="text" name="templist" class="form-control required"  value="Index/type.html">
-                    </div>
-                    <div class="form-group">
-                      <label>文章模板</label>
-                      <input type="text" name="temparticle" class="form-control required"  value="Index/article.html">
-                    </div>                                        
-
                   </div><!-- /.box-body -->
                   <div class="box-footer">
                     <button  id="sub" class="btn btn-primary">提交</button>

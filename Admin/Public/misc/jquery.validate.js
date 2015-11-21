@@ -216,7 +216,10 @@ $.extend($.validator, {
 		rangelength: $.validator.format("Please enter a value between {0} and {1} characters long."),
 		range: $.validator.format("Please enter a value between {0} and {1}."),
 		max: $.validator.format("Please enter a value less than or equal to {0}."),
-		min: $.validator.format("Please enter a value greater than or equal to {0}.")
+		min: $.validator.format("Please enter a value greater than or equal to {0}."),
+
+		lettersonly: "Please enter a valid letter.",
+		alphanumeric: "Please enter a valid Letters, numbers, underscores.",
 	},
 	
 	autoCreateRanges: false,
@@ -696,7 +699,9 @@ $.extend($.validator, {
 		number: {number: true},
 		numberDE: {numberDE: true},
 		digits: {digits: true},
-		creditcard: {creditcard: true}
+		creditcard: {creditcard: true},
+		lettersonly: {lettersonly: true},
+		alphanumeric: {alphanumeric: true},
 	},
 	
 	addClassRules: function(className, rules) {
@@ -961,6 +966,15 @@ $.extend($.validator, {
 		// http://docs.jquery.com/Plugins/Validation/Methods/dateISO
 		dateISO: function(value, element) {
 			return this.optional(element) || /^\d{4}[\/-]\d{1,2}[\/-]\d{1,2}$/.test(value);
+		},
+
+		lettersonly: function(value, element) {
+			return this.optional(element) || /^[a-z]*$/i.test(value);
+		},
+
+
+		alphanumeric: function(value, element) {
+			return this.optional(element) || /^[a-z0-9_]*$/i.test(value);
 		},
 	
 		// http://docs.jquery.com/Plugins/Validation/Methods/number

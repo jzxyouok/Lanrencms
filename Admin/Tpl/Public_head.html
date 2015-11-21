@@ -1,3 +1,5 @@
+      <!-- jQuery 2.1.4 -->
+      <script src="__PUBLIC__/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 
       <header class="main-header">
         <!-- Logo -->
@@ -37,7 +39,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">修改</a>
+                      <a href="{:U("Admin/edit",array("id"=>$_SESSION["admin"]['id']))}" class="btn btn-default btn-flat">修改</a>
                     </div>
                     <div class="pull-right">
                       <a href="{:U("Public/logout")}" class="btn btn-default btn-flat">退出</a>
@@ -64,7 +66,7 @@
             </div>
             <div class="pull-left info">
               <p><?php echo $_SESSION["admin"]['userid'];?></p>
-              <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+              <a href="#"><i class="fa fa-circle text-success"></i>在线</a>
             </div>
           </div>
           <!-- search form -->
@@ -83,12 +85,12 @@
     
             <li class="treeview active">
               <a href="#">
-                <i class="fa  fa-cog"></i> <span>系统管理</span>
+                <i class="fa  fa-cog"></i><span>系统管理</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{:U("System/index")}"><i class="fa fa-cog"></i> 系统设置</a></li>
-                <li><a href="{:U("Admin/index")}"><i class="fa fa-user"></i> 管理员</a></li>                
+                <li><a href="{:U("System/index")}"><i class="fa fa-cog"></i>系统设置</a></li>
+                <li><a href="{:U("Admin/index")}"><i class="fa fa-user"></i>管理员</a></li>                
                 <li><a href="{:U("System/deleteCache")}"><i class="fa fa-refresh"></i>更新缓存</a></li>
               </ul>
             </li>
@@ -96,14 +98,44 @@
 
             <li class="treeview active">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>文章管理</span>
+                <i class="fa fa-folder"></i><span>分类管理</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{:U("Type/index")}"><i class="fa fa-circle-o"></i> 分类管理</a></li>
-                <li><a href="{:U("Type/article")}"><i class="fa fa-circle-o"></i> 文章管理</a></li>
+                <li><a href="{:U("Type/index")}"><i class="fa fa-circle-o"></i>分类管理</a></li>
               </ul>
             </li>
+
+
+            <li class="treeview active">
+              <a href="#">
+                <i class="fa fa-table"></i><span>内容管理</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <?php
+                 $tmp = M("Channeltype")->field("id,typename")->select(); 
+                 foreach ($tmp as $value) {
+                ?>
+                  <li><a href="{:U("Type/article",array("channel"=>$value['id']))}"><i class="fa fa-circle-o"></i><?php echo $value['typename'];?></a></li>
+                <?php
+                  } 
+                ?>
+              </ul>
+            </li>
+
+
+            <li class="treeview active">
+              <a href="#">
+                <i class="fa fa-cubes"></i><span>频道模型</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{:U("Channel/index")}"><i class="fa  fa-cube"></i>内容模型管理</a></li>
+                <li><a href="{:U("Channel/fmanage")}"><i class="fa  fa-cube"></i>字段管理</a></li>
+              </ul>
+            </li>
+
 
 
           </ul>

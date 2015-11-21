@@ -63,12 +63,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            文档管理
+            频道管理
             <small>列表</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-            <li><a href="#">文档管理</a></li>
+            <li><a href="#">频道管理</a></li>
           </ol>
         </section>
 
@@ -77,82 +77,47 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="box">
-
-                <form action="{:U("Type/article",array("channel"=>$_GET['channel'],"typeid"=>$_GET['typeid']))}" method="get">
                 <div class="box-header">
+                  <h3 class="box-title">
                     <div style="float:left;margin:0 8px;">
-                      <a href="{:U("Type/article_add",array("channel"=>$_GET['channel']))}" class="btn btn-block btn-default"><i class="fa fa-fw fa-plus"></i>添加</a>
+                      <a href="{:U("Channel/add")}" class="btn btn-block btn-default"><i class="fa fa-fw fa-plus"></i>添加</a>
                     </div>
                     <div style="float:left;">
-                      <a href="#" id="ids0" class="btn btn-block btn-default" onclick="action('article_delete&id=','ids0');"> <i class="fa fa-fw fa-remove"></i>
+                      <a href="#" id="ids0" class="btn btn-block btn-default" onclick="action('delete&id=','ids0');"> <i class="fa fa-fw fa-remove"></i>
                        删 除
                      </a>
                      </div>
-
-                     <div class="box-tools">
-                        <div class="input-group" style="width: 150px;">
-                          <input type="text" name="q" class="form-control input-sm pull-right" placeholder="<?php echo empty($_GET['q'])?"按标题搜索":$_GET['q'];?>">
-                          <div class="input-group-btn">
-                            <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                          </div>
-                        </div>
-                      </div>
+                  </h3>
                 </div><!-- /.box-header -->
-                </form>
-
                 <div class="box-body">
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <th>选择<input type="checkbox" onclick="addids_all()" ></th>
                         <th>编号</th>
-                        <th>文章标题</th>
-                        <th>更新时间</th>
-                        <th>栏目</th>
-                        <th>点击</th>
-                        <th>状态</th>
-                        <th>作者</th>
+                        <th>频道名称</th>
+                        <th>附加表名</th>
                         <th>操作</th>
                       </tr>
                     </thead>
                     <tbody>
-                        <volist id="vo" name="list">
-                          <tr>
-                            <td>
-                              <input name="id" value="{$vo['id']}" type="checkbox" onclick="addids(this)"></td>
-                            <td>{$vo['id']}</td>
-                             <td><a href="/Home/index.php?m=Index&a=article&id={$vo.id}" target="_blank">{$vo['title']}</a></td>
-                             <td>
-                                {$vo['pubdate']|date="Y-m-d H:i",###}</td>
-                              <td>
-                                 <?php
-                                  $jg = M("Arctype")->where("id=".$vo['typeid'])->field("id,typename")->find();
-                                  echo '<a href="'.U("Type/article",array("typeid"=>$vo['typeid'],"channel"=>$vo['channel'])).'">'.$jg['typename'].'</a>';
-                                 ?>
-                              </td>                              
-                              <td>
-                                 {$vo['click']}
-                              </td>
-                              <td>
-                                 <eq name="vo.arcrank" value="0">
-                                    <span class="label label-success">已审</span>
-                                 </eq>
-                                 <eq name="vo.arcrank" value="-1">
-                                    <span class="label label-danger">待审</span>
-                                 </eq>
-                              </td>
-                              <td>
-                                 {$vo['writer']}
-                              </td>                                                            
-                              <td>
-                                <a title="编辑" href="{:U("Type/article_edit",array("id"=>$vo['id']))}"><i class="fa fa-fw fa-edit"></i></a> | <a data-toggle="modal" data-target="#lc_confirm" onclick="lr_confirm('确定删除？','{:U("Type/article_delete",array("id"=>$vo['id'],"channel"=>$vo['channel']))}');"><i class="fa fa-fw fa-remove"></i></a>
-                              </td>
-                          </tr>
-                        </volist>                    
+                    <volist id="vo" name="list">
+                      <tr>
+                        <td>
+                          <input name="id" value="{$vo['id']}" type="checkbox" onclick="addids(this)"></td>
+                        <td>{$vo['id']}</td>
+                         <td>{$vo['typename']}</td>
+                         <td><?php echo C("DB_PREFIX");?>addon{$vo.id}</td>
+                          <td>
+                            <a href="{:U("Channel/fmanage",array("id"=>$vo['id']))}"><i class="fa fa-fw fa-plus"></i>字段管理</a> | 
+                            <a title="编辑" href="{:U("Channel/edit",array("id"=>$vo['id']))}"><i class="fa fa-fw fa-edit"></i></a> | <a data-toggle="modal" data-target="#lc_confirm" onclick="lr_confirm('确定删除？<br/><span class=\\'label label-danger\\'>注意会清空该频道下所有数据</span>','{:U("Channel/delete",array("id"=>$vo['id']))}')" title="删除"><i class="fa fa-fw fa-remove"></i></a>
+                          </td>
+                      </tr>
+                    </volist>                       
                     </tbody>
                     <tfoot>
-                      <tr><td colspan="9">{$page}</td></tr>
-                    </tfoot>
+                      <tr><td colspan="5">{$page}</td></tr>
+                    </tfoot>                    
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -202,11 +167,10 @@
           if(ids !==""){
             ids = ids.substring(1);
           }          
-          tmp = "index.php?channel=<?php echo $_GET['channel']; ?>&m=Type&a="+aa;          
+          tmp = "index.php?m=Channel&a="+aa;          
           $("#"+bb).attr("href",tmp+ids);
         }
       </script>
-
 
 
   </body>

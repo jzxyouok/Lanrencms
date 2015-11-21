@@ -86,12 +86,14 @@
                 <!-- form start -->
                 <form role="form" method="post" id="form1" action="{:U("Type/article_update")}" class="pageForm required-validate">
                   <input type="hidden" name="id" value="{$vo.id}" >
+                  <input type="hidden" name="channel" value="{$vo.channel}" >
                   <div class="box-body">
+
                     <div class="form-group">
                       <label>文档主栏目</label>
                       <select name="typeid" class="form-control required number">
                       <?php
-                        echo getJG(0,0,"",$vo['typeid']);
+                        echo getJG(0,0,"",$vo['typeid'],$vo['channel']);
                       ?>
                       </select>
                     </div>
@@ -124,7 +126,7 @@
                       <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                       </div>
-                      <input type="text" class="form-control pull-right" id="reservationtime" name="pubdate" value="{$vo['pubdate']|date="Y-m-d H:i:s",###}">
+                      <input type="text" class="form-control pull-right" id="reservationtime" name="pubdate" value="<?php echo date("Y-m-d H:i:s",$vo['pubdate']); ?>">
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
 
@@ -134,27 +136,103 @@
                     <input type="text" name="click"  class="form-control required"  value="{$vo.click}">
                   </div>
 
-                   <div class="form-group">
-                    <label>内容</label>
-                      <textarea id="editor1" name="body"  cols="80">
-                      {$vo1.body}
-                      </textarea>
-                  </div>  
-
-                  <!-- checkbox -->
-                  <!--
                   <div class="form-group">
-                    <label>
-                      <input name="remote" type="checkbox" class="minimal" checked>下载远程图片和资源
-                    </label>
-                  </div>
+                    <label>状态</label>
+                    <select name="arcrank" class="form-control">
+                        <option value="0" <eq name="vo.arcrank" value="0">selected</eq> >已审</option>
+                        <option value="-1" <eq name="vo.arcrank" value="-1">selected</eq> >待审</option>
+                    </select>
+                  </div>                  
 
-                  <div class="form-group">
-                    <label>
-                      <input name="autolitpic" type="checkbox" class="minimal" checked>提取第一个图片为缩略图
-                    </label>
-                  </div>
-                   -->
+                  <?php
+                    $channelfield = M("Channelfield")->where("chid=".$vo['channel'])->select();
+                    foreach ($channelfield as $v) {
+                  ?>
+                    <div class="form-group">
+                      <label><?php echo $v['title'];?></label>
+
+                      <?php if($v['typeid'] == "0" || $v['typeid'] == "1" || $v['typeid'] == "3" || $v['typeid'] == "4" ){ ?>
+                        <input type="text" name="<?php echo $v['fieldname'];?>"  class="form-control"  value="<?php echo $addon[$v['fieldname']];?>">
+                      <?php }elseif ($v['typeid'] == "2" ) { ?>
+                          <textarea id="<?php echo $v['fieldname'];?>" name="<?php echo $v['fieldname'];?>"><?php echo $addon[$v['fieldname']];?></textarea>
+                            <script src="__PUBLIC__/misc/ckeditor/ckeditor.js"></script>
+                            <link rel="stylesheet" href="__PUBLIC__/misc/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
+                              <script>
+                                $(function () {
+                                  // Replace the <textarea id="editor1"> with a CKEditor
+                                  // instance, using default configuration.
+                                  CKEDITOR.replace( '<?php echo $v['fieldname'];?>', {
+                                      filebrowserUploadUrl: '/Admin/index.php?m=Upyun&a=upload&from=Wap'
+                                  });
+                                });
+                              </script>  
+                      <?php }elseif ($v['typeid'] == "5" ) { ?>
+                              <div class="input-group">
+                                <input type="text" id="<?php echo $v['fieldname'];?>" name="<?php echo $v['fieldname'];?>" value="<?php echo $addon[$v['fieldname']];?>" class="form-control">
+                                <span class="input-group-addon"><a href="javascript:void();" onclick="upyunWapPicUpload('<?php echo $v['fieldname'];?>')"><i class="fa fa-fw fa-upload"></i>点击上传</a></span>
+                              </div>
+                      <?php }elseif ($v['typeid'] == "6" ) { 
+                            $tmp1 = '';
+                            $tmps = explode(',', $v['fielddefault']);
+                            foreach ($tmps as $tm) {
+                                  $tmp2 = '';
+                                  if($tm == $addon[$v['fieldname']]){
+                                    $tmp2 = 'selected';
+                                  }
+                                  $tmp1.= '<option value="'.$tm.'" '.$tmp2.'>'.$tm.'</option>';
+                             }
+                       ?>
+                              <select name="<?php echo $v['fieldname'];?>" class="form-control">
+                                  <?php echo $tmp1;?>
+                              </select>
+                      <?php }elseif ($v['typeid'] == "7" ) { 
+                            echo '<br/>';
+                            $tmp1 = '';
+                            $tmps = explode(',', $v['fielddefault']);
+                            foreach ($tmps as $tm) {
+                                $tmp2 = '';
+                                if($tm == $addon[$v['fieldname']]){
+                                  $tmp2 = 'checked="checked"';
+                                }
+                       ?>
+                         <label>
+                         <input class="minimal-red" type="radio" value = "<?php echo $tm;?>" name="<?php echo $v['fieldname'];?>" <?php echo $tmp2;?> > <?php echo $tm;?>
+                          </label>
+                       <?php } ?>
+                      <?php }elseif ($v['typeid'] == "8" ) { 
+                            echo '<br/>';
+                            $tmp1 = '';
+                            $tmps = explode(',', $v['fielddefault']);
+                            $tmp3 = explode(',', $addon[$v['fieldname']]);
+                            foreach ($tmps as $tm) {
+                              $tmp2 = '';
+                              if(in_array($tm, $tmp3)){
+                                $tmp2 = 'checked';
+                              }
+                       ?>
+                         <label>
+                         <input class="minimal-red" type="checkbox" value = "<?php echo $tm;?>" name="<?php echo $v['fieldname'];?>[]" <?php echo $tmp2;?> > <?php echo $tm;?>
+                          </label>
+                       <?php } ?>
+                       <?php }elseif ($v['typeid'] == "9" ) { ?>
+                              <div class="input-group">
+                                <div class="input-group-addon">
+                                  <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="<?php echo $v['fieldname'];?>" name="<?php echo $v['fieldname'];?>" value="<?php echo $addon[$v['fieldname']];?>">
+                              </div><!-- /.input group -->
+                                <script>
+                                  $(function () {
+                                    //Date range picker with time picker
+                                    $('#<?php echo $v['fieldname'];?>').daterangepicker({singleDatePicker: true, timePickerIncrement: 1,timePicker: true,timePicker12Hour:false, format: 'YYYY-MM-DD hh:mm'});
+                                  });
+                                </script>                              
+                      <?php } ?>
+
+                    </div>                    
+                  <?php    
+                    }
+                  ?> 
 
                   </div><!-- /.box-body -->
                   <div class="box-footer">
@@ -178,25 +256,15 @@
      
     </div><!-- ./wrapper -->
 
-
   <!-- date-range-picker -->
   <script src="__PUBLIC__/misc/moment.min.js"></script>
   <script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js"></script>
   <!-- daterange picker -->
   <link rel="stylesheet" href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css">
-
-  <script src="__PUBLIC__/misc/ckeditor/ckeditor.js"></script>
-  <link rel="stylesheet" href="__PUBLIC__/misc/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
     <script>
       $(function () {
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        CKEDITOR.replace( 'editor1', {
-            filebrowserUploadUrl: '/Admin/index.php?m=Upyun&a=upload&from=Wap'
-        });
-
         //Date range picker with time picker
-        $('#reservationtime').daterangepicker({singleDatePicker: true, timePickerIncrement: 1,timePicker: true,timePicker12Hour:false, format: 'YYYY/MM/DD h:mm A'});
+        $('#reservationtime').daterangepicker({singleDatePicker: true, timePickerIncrement: 1,timePicker: true,timePicker12Hour:false, format: 'YYYY-MM-DD hh:mm'});
       });
     </script>
 

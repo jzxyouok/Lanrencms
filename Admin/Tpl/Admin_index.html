@@ -78,14 +78,11 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">管理员列表</h3>
-                </div><!-- /.box-header -->
-                <div class="box-header">
                     <div style="float:left;margin:0 8px;">
                       <a href="{:U("Admin/add")}" class="btn btn-block btn-default"><i class="fa fa-fw fa-plus"></i>添加</a>
                     </div>
                     <div style="float:left;">
-                      <a href="#" id="ids0" class="btn btn-block btn-default" onclick="action('delete/id/','ids0');"> <i class="fa fa-fw fa-remove"></i>
+                      <a href="#" id="ids0" class="btn btn-block btn-default" onclick="action('delete&id=','ids0');"> <i class="fa fa-fw fa-remove"></i>
                        删 除
                      </a>
                      </div>
@@ -124,7 +121,7 @@
                                  </eq>
                               </td>
                               <td>
-                                <a title="编辑" href="{:U("Admin/edit",array("id"=>$vo['id']))}"><i class="fa fa-fw fa-edit"></i></a> | <a onclick="return window.confirm('确定删除？');" title="删除" href="{:U("Admin/delete",array("id"=>$vo['id']))}"><i class="fa fa-fw fa-remove"></i></a>
+                                <a title="编辑" href="{:U("Admin/edit",array("id"=>$vo['id']))}"><i class="fa fa-fw fa-edit"></i></a> | <a data-toggle="modal" data-target="#lc_confirm" onclick="lr_confirm('确定删除？','{:U("Admin/delete",array("id"=>$vo['id']))}');" onclick="return window.confirm('确定删除？');" title="删除"><i class="fa fa-fw fa-remove"></i></a>
                               </td>
                           </tr>
                         </volist>                    
@@ -200,7 +197,7 @@
           if(ids !==""){
             ids = ids.substring(1);
           }          
-          tmp = "__URL__/"+aa;          
+          tmp = "index.php?m=Admin&a="+aa;          
           $("#"+bb).attr("href",tmp+ids);
         }
       </script>

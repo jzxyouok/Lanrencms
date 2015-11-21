@@ -23,7 +23,7 @@
       $T = M("Arctype")->select();
       foreach ($T as $t) {
           echo "<h3><a href=\"".U("Index/type",array("typeid"=>$t["id"]))."\">".$t["typename"]."</a></h3>"; 
-          $article = M("Archives")->where("typeid=".$t["id"])->limit("0,5")->field("id,title")->select();
+          $article = M("Archives")->where("typeid=".$t["id"]." and arcrank=0")->limit("0,5")->field("id,title")->select();
           foreach ($article as $a) {
              echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'">'.$a['title'].'</a></li>';
           }
