@@ -89,7 +89,11 @@
                           <?php 
                             $tmp = M("Channeltype")->field("id,typename")->select();
                             foreach($tmp as $v){
-                              echo '<option value="'.$v['id'].'"> '.$v['typename'].'</option>';
+                              $select = '';
+                              if($v['id'] == $_GET['chid']){
+                                $select = 'selected';
+                              }
+                              echo '<option value="'.$v['id'].'" '.$select.'> '.$v['typename'].'</option>';
                             }
                           ?>                      
                       </select>
