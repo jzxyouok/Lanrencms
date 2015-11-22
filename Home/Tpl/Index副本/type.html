@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{$Think.config.SITENAME}_{$type.typename}_{$type.seotitle}</title>
+    <meta name="keywords" content="{$type.keywords}" />
+    <meta name="description" content="{$type.description}" />    
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  </head>
+  <body>
+
+    <!--注意图片css一些文件放在 Home/Public 文件夹中-->
+
+
+      <!--图片链接-->
+      <img src="__PUBLIC__/images/logo.png">
+      <!--/.图片链接-->
+
+      <h3>{$type.typename}</h3>
+
+      <volist id="vo" name="list">
+         <li><a href="{:U("Index/article",array("id"=>$vo["id"]))}">{$vo.title}</a></li> 
+      </volist>
+
+      <br/>
+      <!--分页-->
+      {$page}
+      <!--/.分页-->
+
+
+  </body>
+</html>
