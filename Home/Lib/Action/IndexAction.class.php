@@ -97,12 +97,16 @@ class IndexAction extends Action {
 
 
     public function article(){
-		$model = M ( "Archives" );
+		$model = D ( "Archives" );
         $id = $_REQUEST ["id"];
 		$vo = $model->where("id = ".$id)->find();
 		if($vo['arcrank'] == "-1"){
 			$this->error('文档未审核！');
 		}
+
+		//click+1
+		$Model = new Model();
+		$Model->execute("UPDATE ".C("DB_PREFIX")."archives SET click=click+1 WHERE id=".$id);
 
 		$model = M ( "Addon".$vo['channel'] );
 		$vo1 = $model->where("aid = ".$id)->find();
