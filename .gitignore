@@ -2,7 +2,7 @@ infoconfig.php
 mysqlconf.php
 Admin/Runtime/
 Home/Runtime/
-
+Home/Tpl/
 
 # OS generated files #
 ######################
@@ -13,4 +13,5 @@ Home/Runtime/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
 
