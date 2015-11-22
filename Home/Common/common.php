@@ -242,6 +242,17 @@ function getType2($id=0){
 }
 
 
+//导航
+function navigation($id,$add){
+    $jg = M("Arctype");
+    $vo = $jg->where("id=".$id)->field("id,reid,typename")->find();
+    if($vo){
+       $tmp = navigation($vo["reid"],$add);
+       $result .= $tmp.$add.'<a href="'.U("Index/type",array("typeid"=>$vo['id'])).'">'.$vo['typename'].'</a>';
+     }
+    return $result;
+}
+
 
 
 
