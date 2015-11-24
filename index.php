@@ -12,8 +12,7 @@
 define('APP_DEBUG', true); //调试模式开关
 define('APP_PATH', './Home/'); //定义应用目录
  
-
-// 加载框架入口文件 wang-mac branch  111
+// 加载框架入口文件 wang-mac branch 113 6666
 require_once ("./ThinkPHP/ThinkPHP.php");
 
 
