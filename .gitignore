@@ -3,7 +3,7 @@ mysqlconf.php
 Admin/Runtime/
 Home/Runtime/
 Home/Tpl/
-Home/upload/
+upload/
 
 # OS generated files #
 ######################
