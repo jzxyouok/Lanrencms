@@ -1,36 +1,614 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{$Think.config.SITENAME}</title>
-    <meta name="keywords" content="{$Think.config.keyword}" />
-    <meta name="description" content="{$Think.config.content}" />    
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  </head>
-  <body>
-    
-    <!--注意图片css一些文件放在 Home/Public 文件夹中-->
+<title>{$Think.config.SITENAME}</title>
+<meta name="keywords" content="{$Think.config.keyword}" />
+<meta name="description" content="{$Think.config.content}" />
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="__PUBLIC__/images/favicon.ico" />
 
-    <!--图片链接-->
-    <img src="__PUBLIC__/images/logo.png">
-    <!--/.图片链接-->
+<link type="text/css" href="__PUBLIC__/css/newindex.css" rel="stylesheet" />
 
-    <!-- 循环分类-->
-    <?php 
-      $T = M("Arctype")->select();
-      foreach ($T as $t) {
-          echo "<h3><a href=\"".U("Index/type",array("typeid"=>$t["id"]))."\">".$t["typename"]."</a></h3>"; 
-          $article = M("Archives")->where("typeid=".$t["id"]." and arcrank=0")->limit("0,5")->field("id,title")->select();
-          foreach ($article as $a) {
-             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'">'.$a['title'].'</a></li>';
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+
+<script type="text/javascript">
+var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+
+var browser = navigator.userAgent.toLowerCase(); 
+
+var isMobile = false; 
+
+for (var i=0; i<mobileAgent.length; i++){ if (browser.indexOf(mobileAgent[i])!=-1){ isMobile = true; 
+location.href = 'm/default.htm';
+
+break; } } 
+</script>
+
+</head>
+
+<style type="text/css">
+.current_nav0{ border-bottom:3px solid #06a7e1;}
+.current_nav0 a{ color:#3399e0;}
+</style>
+
+<body>
+
+
+
+
+<div class="header">
+<div class="logo"><div class="clear le inlogi"><a href="default.htm" target="_blank" title="扔赞网微信导航"><img src="{$Think.config.site_logo}" alt="微信导航" /></a></div><div class="cleara le"><img src="__PUBLIC__/images/hdjc_02.gif" alt="微信收录" title="微信收录"/></div>
+<div class="clearb l">
+<form action="/weixin-search-id-126.html" method="post">
+
+<input type="text" name="search" value="输入微信名称、ID、关键词搜索" class="seakey le" onfocus="javascript:if(this.value == '输入微信名称、ID、关键词搜索') this.value = ''; this.style.color='black';" onblur="if(this.value == '') {this.value = '输入微信名称、ID、关键词搜索';  this.style.color = '#bdbdbd';}" id="secpad"/>
+<input type="submit"  class="sercall le" value="" id="button"/>
+<input type="hidden" name="__hash__" value="6666cd76f96956469e7be39d750cc7d9_ad9deee007a528883efe8ee67f237c2f" /></form>
+</div>
+<div class="detfor l" id="detfor">
+<li class="wxadd"> 
+<a href="member-login.html" target="_blank">提交</a></li>
+
+<li class="weibo"><a href="../weibo.com/rengzan" target="_blank">微博</a></li>
+<li class="wxapp"><a href="app.html" target="_blank">APP</a></li>
+<li class="dlogin"> <a href="member-login.html" target="_blank">登录</a><span class="splite">|</span><a href="member-register.html" target="_blank">注册</a></li>
+</div></div></div>
+<div class="indemain">
+<div class="navi">
+  <ul>
+    <li class="current_nav0"><a href="default.htm"  title="扔赞网">首页</a></li>
+    <li class="current_nav53"><a href="weixin-index-id-53.html" target="_blank" title="微信公众号">微信号</a></li>
+    <li class="current_nav191"><a href="photo-index-id-191.html" target="_blank" title="微信文章">微信文章</a></li>
+    <li class="current_nav55"><a href="article-index-id-55.html" target="_blank" title="微信资讯">微信资讯</a></li>
+    <li class="current_nav131"><a href="promotion-index-id-131.html" target="_blank" title="微信活动">微信活动</a></li>
+    <li class="current_nav55"><a href="../tui.rengzan.com/default.htm" target="_blank" title="联盟">微信联盟</a></li>
+    <li class="current_nav55"><a href="../wx.rengzan.com/default.htm" target="_blank" title="微信平台">微信平台</a></li>
+    <li class="current_nav55"><a href="../bbs.rengzan.com/home" target="_blank" title="微信论坛">论坛</a></li>
+  </ul>
+  <div class="navix">
+    <ul>
+      <li class="current_nav115"><a href="weixin-index-id-1.html" target="_blank" title="新闻微信公众号">新闻</a></li>
+      <li class="current_nav115"><a href="weixin-index-id-117.html" target="_blank" title="亲子微信公众号">亲子</a></li>
+      <li class="current_nav115"><a href="weixin-index-id-95.html"  target="_blank" title="购物微信公众号">购物</a></li>
+      <li class="current_nav115"><a href="weixin-index-id-100.html" target="_blank" title="旅游微信公众号">旅游</a></li>
+      <li class="current_nav115"><a href="weixin-index-id-65.html" target="_blank" title="公益微信公众号">公益</a></li>
+      <li class="current_nav115"><a href="article-index-id-227.html" target="_blank" title="微信专题">专题</a></li>
+      <li class="current_nav115"><a href="default.htm" target="_blank" title="">推荐</a></li>
+      <li class="current_nav115"><a href="weixin-area-id-87.html" target="_blank" title="微信同城">同城</a></li>
+      <li class="current_nav115"><a href="weixin-allorder.html" target="_blank" title="微信排行榜">排行榜</a></li>
+      <li class="current_nav115"><a href="weixin-news-id-90.html" target="_blank" title="微信最新收录">最新收录</a></li>
+      <li class="current_nav115"><a href="../bianji.rengzan.com/default.htm" target="_blank" title="微信编辑器">微信编辑器</a></li>
+    </ul>
+  </div>
+  <div class="oldre r"><a href="default.htm" target="_blank">去看旧版</a></div>
+</div>
+<div class="main">
+  <script type="text/javascript" src="__PUBLIC__/js/jquery.orbit.min.js"></script>
+  <div class="left indesid">
+    <div style="width: 601px; height: 312px; margin: 0 auto;">
+     
+      <div id="featured">
+        <a class="orbit-item" href="../bianji.rengzan.com/default.htm" data-caption="#htmlCaption0">
+        <img src="__PUBLIC__/images/55f146ae572a5.jpg" alt="定制个人专属微信编辑器" width="601" height="312"></a><a class="orbit-item" href="article-show-id-440.html" data-caption="#htmlCaption1">
+        <img src="__PUBLIC__/images/55f146ae572a5.jpg" alt="纪念中国抗战胜利70周年" width="601" height="312"></a><a class="orbit-item" href="../tui.rengzan.com/default.htm" data-caption="#htmlCaption2">
+        <img src="__PUBLIC__/images/55f146ae572a5.jpg" alt="首家微信派单接单推广 全新上线" width="601" height="312"></a><a class="orbit-item" href="article-show-id-397.html" data-caption="#htmlCaption3">
+        <img src="__PUBLIC__/images/55f146ae572a5.jpg" alt="扔赞网提交微信 领取会员VIP" width="601" height="312"></a><a class="orbit-item" href="announce-show-id-13.html" data-caption="#htmlCaption4">
+        <img src="__PUBLIC__/images/55f146ae572a5.jpg" alt="夏日让利，冰动全网充值即返" width="601" height="312"></a>      </div>
+      
+      <span class="orbit-caption" id="htmlCaption0">定制个人专属微信编辑器</span><span class="orbit-caption" id="htmlCaption1">纪念中国抗战胜利70周年</span><span class="orbit-caption" id="htmlCaption2">首家微信派单接单推广 全新上线</span><span class="orbit-caption" id="htmlCaption3">扔赞网提交微信 领取会员VIP</span><span class="orbit-caption" id="htmlCaption4">夏日让利，冰动全网充值即返</span>    </div>
+    <script>
+$(window).load(function() {
+	$('#featured').orbit({
+		bullets : true,
+		startClockOnMouseOut : true,
+		captionAnimation : 'slideOpen'
+	});
+});
+</script>
+  </div>
+  <div class="center">
+    <h3 class="subject"><a href="article-show-id-454.html">微信支付将向境外商户开放 支持九种外币 </a></h3>
+      <ul class="list">
+        <p><a href="article-show-id-454.html">11月20日消息，微信支付团队宣布，将</a></p>
+      </ul>    <ul class="mainlist liforuone">
+      <li><a href="article-show-id-448.html">微信发布优惠券新玩法 朋友共享的优惠券上线</a></li><li><a href="article-show-id-446.html">微信发假消息可判7年 常见9种行为入罪</a></li><li><a href="article-show-id-445.html">微信转账开始收费第三方支付免费时代终结？</a></li>    </ul>
+    <ul class="mainlist liforutow">
+      <li><a href="article-show-id-443.html">官方辟谣：微信红包不会停</a></li><li><a href="article-show-id-442.html">微信公众平台卡券新功能开放公告</a></li><li><a href="article-show-id-441.html">微信智慧校园解决方案上线 覆盖全国多所高校</a></li>    </ul>
+  </div>
+  <div class="last">
+    <div class="adimg"><a title="扔赞介绍" href="content-index-id-180.html"><img src="__PUBLIC__/images/ad_c_03.gif" /></a></div>
+    <div class="tool">
+      <ul class="fasttool">
+        <li id="fastone"><a href="weixin-index-id-1.html" title="资讯微信公众号">找资讯</a></li>
+        <li><a href="weixin-index-id-95.html" title="购物微信公众号">找购物</a></li>
+        <li><a href="weixin-index-id-44.html" title="名人微信公众号">找名人</a></li>
+        <li id="fastone"><a href="weixin-index-id-99.html" title="美食微信公众号">找美食</a></li>
+        <li><a href="weixin-index-id-100.html" title="旅游微信公众号">找旅游</a></li>
+        <li><a href="weixin-index-id-108.html" title="交友微信公众号">找交友</a></li>
+        <li id="fastone"><a href="weixin-index-id-109.html" title="职场微信公众号">找职场</a></li>
+        <li><a href="weixin-index-id-110.html" title="婚恋微信公众号">找婚恋</a></li>
+        <li><a href="weixin-index-id-113.html" title="高校微信公众号">找高校</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="toolnext">
+  <div class="subject3"><a href="photo-show-id-1681.html">建造师挂靠价值不降反升！挂靠前景一片</a></div>  <ul class="last2">
+    <li><a href="photo-show-id-1680.html"> <span> 科技 |</span> 农村电商政策红利 农村电商概念股受</a></li><li><a href="photo-show-id-1679.html"> <span> 健康 |</span> 饭后吃柿子缓解宝贝咳嗽！</a></li><li><a href="photo-show-id-1678.html"> <span> 财经 |</span> 无财可理？当你只有一万元又想理财时</a></li><li><a href="photo-show-id-1677.html"> <span> 体育 |</span> 男人看过来，你不一定有这个女人懂足</a></li>  </ul>
+</div>
+<div class="toolth">
+  <div class="subject3"><a href="photo-show-id-1676.html">一部曲（二期班）终于要开班了~</a></div>  <ul class="last3">
+    <li><a href="photo-show-id-1675.html"> <span> 时尚 |</span> 设计费，为什么总这么低？</a></li><li><a href="photo-show-id-1674.html"> <span> 健康 |</span> 冬季八个养生小常识，你都知道吗？</a></li><li><a href="photo-show-id-1673.html"> <span> 科技 |</span> 从集市到网购，卖货郎全面进攻农村市</a></li><li><a href="photo-show-id-1672.html"> <span> 美食 |</span> 柚子成熟时，到梅县寻找最好吃的沙田</a></li>  </ul>
+</div>
+<div class="toolcat">
+  <div class="toolcatone"> <span class="l">最新收录</span> <span class="r"><a href="weixin-news-id-90.html">更多》</a></span> </div>
+  <div class="toolend">
+    <ul class="tool7">
+
+
+
+
+
+
+      <?php 
+      $A = M("Archives")->where("arcrank=0 and channel=43")->limit("0,3")->field("id,title,litpic,click")->order("pubdate desc")->select();
+        foreach ($A as $a) {
+             echo ' <li><span class="r">关注'.$a['click'].'</span><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'兴趣部落"> <img src="'.$a['litpic'].'" /></a>
+            <a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a>
+          </li>';
           }
-          echo "<hr/>";
+         
+    ?>
+	  
+	  
+	  
+	    </ul>
+  </div>
+</div>
+<div class="inad_tow r"> <a href="../bianji.rengzan.com/default.htm"><img src="__PUBLIC__/images/ad_c_06.gif" /></a> </div>
+<div class="cool">
+  <div class="l">
+    <div class="naviy">
+      <h3 class="subject4">推荐中心</h3>
+      <ul class="navim l">
+        <li><a href="content-index-id-138.html"  class="nitj">我要上推荐</a></li>
+        <li><a href="#">猜你喜欢</a></li>
+        <li><a href="#">栏目推荐</a></li>
+      </ul>
+      <div class="rzred">
+                  <a href="member-register.html">马上注册扔赞网会员，开始体验！</a>      </div>
+      <div class="hdcd"><a href="../tui.rengzan.com/default.htm" target="_blank" title="微信接单平台"><img src="__PUBLIC__/images/ygimg.gif" /></a></div>
+    </div>
+    <div class="foto">
+      <ul class="mustfoto">
+
+
+
+<?php 
+      $A = M("Archives")->where("arcrank=0 and channel=43")->limit("0,14")->field("id,title,litpic,click")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo ' <li><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'兴趣部落"> <img src="'.$a['litpic'].'" /></a>
+            <p><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a></p>
+          </li>';
+          }
+         
+    ?>
+
+
+		  
+		  
+		  </ul>
+    </div>
+  </div>
+  <div class="coolr">
+    <div class="uptwo"> <span class="upth l">
+      <h3>微信总排行</h3>
+      </span> <span class="r">
+      <h5><a href="weixin-allorder.html" title="微信排行">今日排行榜</a></h5>
+      </span> </div>
+    <div class="down">
+      <div class="downl">
+        <ul>
+          <li><a href="weixin-show-id-4706.html" title="笑你妹微信公众号">笑你妹</a></li><li><a href="weixin-show-id-2867.html" title="两性密语微信公众号">两性密语</a></li><li><a href="weixin-show-id-4209.html" title="故事宝贝微信公众号">故事宝贝</a></li><li><a href="weixin-show-id-20480.html" title="探花邦微信公众号">探花邦</a></li><li><a href="weixin-show-id-3115.html" title="好书推荐微信公众号">好书推荐</a></li><li><a href="weixin-show-id-3936.html" title="每天一句心语微信公众号">每天一句心语</a></li><li><a href="weixin-show-id-3553.html" title="聚划算微信公众号">聚划算</a></li><li><a href="weixin-show-id-8584.html" title="中国邮政储蓄银行微信公众号">中国邮政储蓄银行</a></li>        </ul>
+      </div>
+      <div class="downr">
+        <ul>
+          <li><a href="weixin-show-id-19137.html" title="西部医疗援助微信公众号">西部医疗援助</a></li><li><a href="weixin-show-id-5074.html" title="招商银行微信公众号">招商银行</a></li><li><a href="weixin-show-id-19715.html" title="花呗变现微信公众号">花呗变现</a></li><li><a href="weixin-show-id-17808.html" title="四叶草旅行网微信公众号">四叶草旅行网</a></li><li><a href="weixin-show-id-20333.html" title="南昌大愿医院微信公众号">南昌大愿医院</a></li><li><a href="weixin-show-id-8587.html" title="华夏银行微信公众号">华夏银行</a></li><li><a href="weixin-show-id-18199.html" title="植疗美品微信公众号">植疗美品</a></li><li><a href="weixin-show-id-18059.html" title="免费天天抢微信公众号">免费天天抢</a></li>        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tadc"><a href="../tui.rengzan.com/default.htm" target="_blank"><img src="__PUBLIC__/images/nextrt_14.gif" /></a></div>
+<div class="maplist">
+  <div class="maplist_left l">
+    <div class="secodl">
+        <div class="naviy">
+          <h3 class="subject4">资讯阅读</h3>
+          <ul class="navim l">
+
+
+
+<?php 
+     $tmp_typeid = getType2(74);
+      $T = M("Arctype")->where("id in (".trim($tmp_typeid,',').") ")->field("id,typename")->select();
+      foreach ($T as $t) {
+          echo '<li><a href="'.U("Index/type",array("typeid"=>$t["id"])).'" >'.$t["typename"].'</a></li>
+'; 
       }
     ?>
-    <!-- /.循环分类 -->
 
-  </body>
+ <li><a href="#" title="">更多》</a></li>
+
+          </ul>
+        </div>
+        <div class="fotomu">
+          <ul class="fistfoto">
+                  
+			
+		
+<?php 
+      $tmp_typeid = getType2(74);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("0,8")->field("id,title,litpic,click")->order("pubdate desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'兴趣部落"> <img src="'.$a['litpic'].'" alt="'.$a['title'].'" /></a>
+                <p><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a></p>
+              </li>';
+          }
+         
+    ?>
+						
+
+
+
+			  
+			         </ul>
+        </div>
+      </div><div class="secodl">
+        <div class="navis">
+          <h3 class="subject4">名人明星</h3>
+          <ul>
+           
+		<?php 
+     $tmp_typeid = getType2(78);
+      $T = M("Arctype")->where("id in (".trim($tmp_typeid,',').") ")->field("id,typename")->select();
+      foreach ($T as $t) {
+          echo '<li><a href="'.U("Index/type",array("typeid"=>$t["id"])).'" >'.$t["typename"].'</a></li>
+'; 
+      }
+    ?>
+
+ <li><a href="#" title="">更多》</a></li>	
+			
+			
+          </ul>
+        </div>
+        <div class="fotomu">
+          <ul class="fistfoto">
+                       
+	<?php 
+      $tmp_typeid = getType2(78);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("0,8")->field("id,title,litpic,click")->order("pubdate desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'兴趣部落"> <img src="'.$a['litpic'].'" alt="'.$a['title'].'" /></a>
+                <p><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a></p>
+              </li>';
+          }
+         
+    ?>
+	
+
+
+						
+					   </ul>
+        </div>
+      </div><div class="secodl">
+        <div class="navis">
+          <h3 class="subject4">影音娱乐</h3>
+          <ul>
+            <?php 
+     $tmp_typeid = getType2(76);
+      $T = M("Arctype")->where("id in (".trim($tmp_typeid,',').") ")->field("id,typename")->select();
+      foreach ($T as $t) {
+          echo '<li><a href="'.U("Index/type",array("typeid"=>$t["id"])).'" >'.$t["typename"].'</a></li>
+'; 
+      }
+    ?>
+
+ <li><a href="#" title="">更多》</a></li>	
+          </ul>
+        </div>
+        <div class="fotomu">
+          <ul class="fistfoto">
+                       <?php 
+      $tmp_typeid = getType2(76);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("0,8")->field("id,title,litpic,click")->order("pubdate desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'兴趣部落"> <img src="'.$a['litpic'].'" alt="'.$a['title'].'" /></a>
+                <p><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a></p>
+              </li>';
+          }
+         
+    ?>       </ul>
+        </div>
+      </div><div class="secodl">
+        <div class="navis">
+          <h3 class="subject4">生活购物</h3>
+          <ul>
+           <?php 
+     $tmp_typeid = getType2(80);
+      $T = M("Arctype")->where("id in (".trim($tmp_typeid,',').") ")->field("id,typename")->select();
+      foreach ($T as $t) {
+          echo '<li><a href="'.U("Index/type",array("typeid"=>$t["id"])).'" >'.$t["typename"].'</a></li>
+'; 
+      }
+    ?>
+
+ <li><a href="#" title="">更多》</a></li>	
+          </ul>
+        </div>
+        <div class="fotomu">
+          <ul class="fistfoto">
+                       <?php 
+      $tmp_typeid = getType2(80);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("0,8")->field("id,title,litpic,click")->order("pubdate desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'兴趣部落"> <img src="'.$a['litpic'].'" alt="'.$a['title'].'" /></a>
+                <p><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a></p>
+              </li>';
+          }
+         
+    ?>     </ul>
+        </div>
+      </div><div class="secodl">
+        <div class="navis">
+          <h3 class="subject4">社区交友</h3>
+          <ul>
+            <?php 
+     $tmp_typeid = getType2(82);
+      $T = M("Arctype")->where("id in (".trim($tmp_typeid,',').") ")->field("id,typename")->select();
+      foreach ($T as $t) {
+          echo '<li><a href="'.U("Index/type",array("typeid"=>$t["id"])).'" >'.$t["typename"].'</a></li>
+'; 
+      }
+    ?>
+
+ <li><a href="#" title="">更多》</a></li>	
+          </ul>
+        </div>
+        <div class="fotomu">
+          <ul class="fistfoto">
+                       <?php 
+      $tmp_typeid = getType2(82);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("0,8")->field("id,title,litpic,click")->order("pubdate desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'兴趣部落"> <img src="'.$a['litpic'].'" alt="'.$a['title'].'" /></a>
+                <p><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a></p>
+              </li>';
+          }
+         
+    ?>    </ul>
+        </div>
+      </div>  </div>
+  <div class="maplist_right r">
+    <div class="coolr zixu">
+      <div class="uptwo"> <span class="upth l">
+        <h3>资讯总排行</h3>
+        </span> <span class="r">
+        <h5><a href="weixin-allorder.html" target="_blank">更多排行榜</a></h5>
+        </span> </div>
+      <div class="down">
+        <div class="downl">
+          <ul>
+
+
+
+             <?php 
+      $tmp_typeid = getType2(74);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("0,5")->field("id,title,litpic,click")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" title="'.$a['title'].'兴趣部落">'.$a['title'].'</a></li>';
+          }
+         
+    ?> 
+			
+			
+			
+			</ul>
+        </div>
+        <div class="downrc">
+          <ul>
+             <?php 
+      $tmp_typeid = getType2(74);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("6,10")->field("id,title,litpic,click")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" title="'.$a['title'].'兴趣部落">'.$a['title'].'</a></li>';
+          }
+         
+    ?>      </ul>
+        </div>
+      </div>
+      <div class="ad_zx"><a href="app.html" table="_blank"><img src="__PUBLIC__/images/ad2.gif" /></a></div>
+    </div>
+    <div class="coolr mingreng">
+      <div class="uptwo"> <span class="upth l">
+        <h3>名人总排行</h3>
+        </span> <span class="r">
+        <h5><a href="weixin-allorder.html" target="_blank">更多排行榜</a></h5>
+        </span> </div>
+      <div class="down">
+        <div class="downl">
+          <ul>
+             <?php 
+      $tmp_typeid = getType2(78);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("0,5")->field("id,title,litpic,click")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" title="'.$a['title'].'兴趣部落">'.$a['title'].'</a></li>';
+          }
+         
+    ?>         </ul>
+        </div>
+        <div class="downrc">
+          <ul>
+            <?php 
+      $tmp_typeid = getType2(78);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("6,10")->field("id,title,litpic,click")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" title="'.$a['title'].'兴趣部落">'.$a['title'].'</a></li>';
+          }
+         
+    ?>            </ul>
+        </div>
+      </div>
+      <div class="ad_zx">
+        <div style="margin-top:5px;" class="rbox">
+          <h3>交流群(QQ)</h3>
+          
+          <code>233577573（A群）</code>
+          <code>287652054（B群）</code>
+          
+          <code>50357881（C群）</code> 
+          
+          </div>
+      </div>
+    </div>
+    <div class="coolr yingshi">
+      <div class="uptwo"> <span class="upth l">
+        <h3>影音总排行</h3>
+        </span> <span class="r">
+        <h5><a href="weixin-allorder.html" target="_blank">更多排行榜</a></h5>
+        </span> </div>
+      <div class="down">
+        <div class="downl">
+          <ul>
+            <?php 
+      $tmp_typeid = getType2(76);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("0,5")->field("id,title,litpic,click")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" title="'.$a['title'].'兴趣部落">'.$a['title'].'</a></li>';
+          }
+         
+    ?>           </ul>
+        </div>
+        <div class="downrc">
+          <ul>
+            <?php 
+      $tmp_typeid = getType2(76);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("6,10")->field("id,title,litpic,click")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" title="'.$a['title'].'兴趣部落">'.$a['title'].'</a></li>';
+          }
+         
+    ?>             </ul>
+        </div>
+      </div>
+      <div class="ad_zx">
+        <div class="ad_zx"><script type="text/javascript">
+    /*首页小广告位263*94 创建于 2015-04-11*/
+    var cpro_id = "u2039847";
+</script>
+<script src="../cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div>
+      </div>
+    </div>
+    <div class="coolr fami">
+      <div class="uptwo"> <span class="upth l">
+        <h3>生活总排行</h3>
+        </span> <span class="r">
+        <h5><a href="weixin-allorder.html" target="_blank">更多排行榜</a></h5>
+        </span> </div>
+      <div class="down">
+        <div class="downl">
+          <ul>
+            <?php 
+      $tmp_typeid = getType2(80);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("0,5")->field("id,title,litpic,click")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" title="'.$a['title'].'兴趣部落">'.$a['title'].'</a></li>';
+          }
+         
+    ?>           </ul>
+        </div>
+        <div class="downrc shejiao">
+          <ul>
+             <?php 
+      $tmp_typeid = getType2(80);
+      $A = M("Archives ")->where("arcrank=0 and typeid in (".trim($tmp_typeid,',').")")->limit("6,10")->field("id,title,litpic,click")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" title="'.$a['title'].'兴趣部落">'.$a['title'].'</a></li>';
+          }
+         
+    ?>            </ul>
+        </div>
+      </div>
+      <div class="ad_zx">
+        <div class="ad_zx"><a href="article-show-id-45.html" target="_blank"><img src="__PUBLIC__/images/wxid2.gif" /></a></div>
+      </div>
+      <div class="coolrada">
+        <div class="ad_zx">
+          <div class="ad_zx"><img src="__PUBLIC__/images/wxid7.gif" /></div>
+          <div class="ad_tji">
+            <p>兴趣部落收录统计</p>
+            <div class="tjnum">已收录<span>20090</span>兴趣部落</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> </div>
+ 
+  
+  	<!--
+  <div class="secodom">
+    <div class="secodl">
+      <div class="navis1">
+        <ul>
+          <li id="thone"><a href="#">微信促销活动</a></li>
+          
+                
+          <li>          <a href="member-register.html">会员免费发布促销活动,让更多人参与</a></li>        </ul>
+      </div>
+    </div>
+    
+
+	<!--
+    <div class="fotomuom">
+      <ul class="fistfotoom">  
+      <li><a href="promotion-show-id-186.html" target="_blank"><img src="Uploads/2015/09/28/5608b999cbd98.jpg" width="193" height="111"/></a>
+          <p><a href="promotion-show-id-186.html" target="_blank">【平台活动】荣信汇国庆中秋</a></p>
+          <p><em class="l">荣信汇金融家</em><em class="r">303参加</em></p>
+        </li><li><a href="promotion-show-id-185.html" target="_blank"><img src="Uploads/2015/09/23/560245531c8f7.jpg" width="193" height="111"/></a>
+          <p><a href="promotion-show-id-185.html" target="_blank">十一出行 玩乐礼包送给您~</a></p>
+          <p><em class="l">小美妈妈圈</em><em class="r">447参加</em></p>
+        </li><li><a href="promotion-show-id-184.html" target="_blank"><img src="Uploads/2015/09/14/55f69850d5133.jpg" width="193" height="111"/></a>
+          <p><a href="promotion-show-id-184.html" target="_blank">热烈庆祝瑞尔立成立11周年</a></p>
+          <p><em class="l">瑞尔立齿科</em><em class="r">461参加</em></p>
+        </li><li><a href="promotion-show-id-182.html" target="_blank"><img src="Uploads/2015/09/08/55ee5fa6995df.gif" width="193" height="111"/></a>
+          <p><a href="promotion-show-id-182.html" target="_blank">锦韩官方商城微信投票互动送</a></p>
+          <p><em class="l">锦韩官方商城</em><em class="r">652参加</em></p>
+        </li><li><a href="promotion-show-id-180.html" target="_blank"><img src="Uploads/2015/08/31/55e3f58677c16.jpg" width="193" height="111"/></a>
+          <p><a href="promotion-show-id-180.html" target="_blank">哆啦A梦辣妈萌宝 清凉一夏</a></p>
+          <p><em class="l">欢趣哆啦A梦</em><em class="r">564参加</em></p>
+        </li> 
+      </ul>
+      <div class="mato">
+                <a href="member-register.html">更多会员专享</a>      </div>
+    </div>
+  </div>
+
+-->
+
+
+  <div class="inads"><div class="ptadccd">
+    <div class="ptadcfcf"><script type="text/javascript">
+    /*960*90 创建于 2015-11-23*/
+    var cpro_id = "u2414342";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+
+</div>
+    </div>
+</div>
+<include file="foot" />
+
+</body>
 </html>

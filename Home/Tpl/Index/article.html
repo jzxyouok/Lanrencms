@@ -1,28 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{$vo.title}_{$Think.config.SITENAME}</title>
-    <meta name="keywords" content="{$vo.title}" />
-    <meta name="description" content="{$vo.description}" />    
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  </head>
-  <body>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-      <!--注意图片css一些文件放在 Home/Public 文件夹中-->
+<head>
 
-      <!--图片链接-->
-      <img src="__PUBLIC__/images/logo.png">
-      <!--/.图片链接-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-      <!--表中有的字段都可以调用-->
-      <h3>{$vo.title}</h3>
-      <h4>{$vo['pubdate']|date="Y-m-d H:i:s",###}</h4>
-      <h4>{:html_entity_decode($vo['body'])}</h4>
-      <!--/.表中有的字段都可以调用-->
+<title>{$vo.title}_{$Think.config.SITENAME}</title>
 
-  </body>
+<meta name="keywords" content="{$vo.title}" />
+<meta name="description" content="{$vo.description}" /> 
+
+</head>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+
+<link type="text/css" href="__PUBLIC__/css/newindex.css" rel="stylesheet" />
+
+<style type="text/css">
+.current_nav53{ border-bottom:3px solid #06a7e1;}
+.current_nav53 a{ color:#3399e0;}
+</style>
+
+
+<body>
+    
+<include file="head" />
+
+	<div class="navi_there">
+    当前位置： 
+	
+<a href="{:C("site_url")}">首页</a>{:navigation($type['id']," > ")}
+ 
+
+	
+	
+	
+		 
+		 
+		 </div>
+    <div class="main_case l">
+    	<div class="wrap l">
+        	<div class="wrappic l"><img src="{$vo.litpic}" width="102" height="102" title="{$vo.title}"/>
+               <br />
+            
+    <!--      <div class="viewc">
+               
+                <div class="info">
+                    <span class="xhbg">
+                    <a href="javascript:void(0);" class='xh' onmouseover="this.style.backgroundPosition='0 0'" onmouseout="this.style.backgroundPosition='-189px 0'" onclick="xh(this,21009,'xh')">&nbsp;&nbsp;<strong>0</strong></a></span>
+                </div>
+                
+                <div class="info">
+                    <span class="xhbg nxhbg"><a href="javascript:void(0);" class='xh' onmouseover="this.style.backgroundPosition='-567px 0'" onmouseout="this.style.backgroundPosition='-378px 0'" onclick="xh(this,21009,'nxh')">&nbsp;&nbsp;<strong>0</strong></a></span>
+                </div>
+                
+            </div>
+-->
+
+          <div class="viesad">
+          
+                                                </div>  
+            </div>
+           <div class="cont l">
+        	<div class="cont_box">
+            	<h1>{$vo.title}</h1>  
+                <div class="cont_r l">关注度：{$vo.click}人关注</div>
+            </div>
+            <ul>
+
+
+            	<li>
+                	<label>部落名称：</label>
+                    {$vo.title}                </li>
+
+
+					 <li>
+                	<label>关注量：</label>
+                  {$vo.guanzhu}     
+                </li>                <li>
+                	<label>话题量：</label>
+                      {$vo.huati}                </li>   
+
+
+                <li>
+                	<label>部落类型：</label>
+                   {$vo.leixing}          </li>
+               
+					
+
+
+<neq name="vo.weixinhao" value="">
+<li>
+<label>微信账号：</label>
+ {$vo.weixinhao}             
+</li>
+</neq>
+
+
+
+                <li>
+                	<label>部落分类：</label>
+                    <abbr>{:navigation($type['id'],"  ")}</abbr>
+                </li>
+                
+                <li>
+                	<label>标签tag：</label>
+                    <a href=weixin-index-id-53-tag-_2525E5_2525AE_2525B6_2525E7_2525BA_2525BA.html target="_blank">家纺</a>&nbsp;<a href=weixin-index-id-53-tag-_2525E5_2525AE_2525B6_2525E5_2525B1_252585.html target="_blank">家居</a>&nbsp;<a href=weixin-index-id-53-tag-_2525E5_2525BA_25258A_2525E4_2525B8_25258A_2525E7_252594_2525A8_2525E5_252593_252581.html target="_blank">床上用品</a>&nbsp;                   
+                </li>
+               
+                <li>
+                	<label>收录时间：</label>
+                  {$vo['pubdate']|date="Y-m-d H:i:s",###}          </li>
+                <li>
+                 <!-- Baidu Button BEGIN -->
+                  <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="margin-top:10px;"> <span class="bds_more" style="line-height:15px;"></span> <a class="bds_qzone"></a> <a class="bds_tsina"></a> <a class="bds_tqq"></a> <a class="bds_renren"></a> <a class="bds_t163"></a> <a class="shareCount"></a> </div>
+                  <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=4897621" ></script>
+                  <script type="text/javascript" id="bdshell_js"></script>
+                  <script type="text/javascript">
+									document.getElementById("bdshell_js").src = "../bdimg.share.baidu.com/static/js/shell_v2.js@cdnversion=" + Math.ceil(new Date()/3600000)
+									</script>
+                  <!-- Baidu Button END -->
+
+
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","sqq","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+                </li>
+            </ul>
+        </div>
+         <div class="cont_cat l">
+        	<img src="{$vo.erweima}" title="使用手机打开二维码扫描，将手机摄像头对准二维码图片扫描即可。" width="225" height="225"/>
+          	<div class="cont_bot">
+             <a href="{$vo.pcurl}" target="_blank"><img src="__PUBLIC__/images/mm_19.gif" /></a>
+            </div>
+        </div>
+        </div>
+      <div class="mainhead l">
+      		<span><strong>部落简介</strong></span>
+            <span class="copycondd"><a href="guestbook-index.html" target="_blank">报错/反馈</a></span>
+      </div>
+      <div class="scroll l">
+        	
+            <dd>{$vo.description}</dd>
+        </div>
+        <div class="copy l">
+  
+        
+                 	<span class="copycon l"><strong>最新文章</strong></span>
+            <span class="copycon r">看看部落主都在用什么<a href="#m" target="_blank">QQ兴趣部落编辑器</a>？</span>
+        </div>
+      	 <div class="Paris l">
+        	<ul>
+            
+                     
+            
+            
+        
+            </ul>
+        </div>
+          <div class="pagewx">  </div>
+        
+        
+         <div class="mainover">
+        	<div class="mainoverone"><h4>同类账号</h4></div>
+            <div class="mainovertwo">
+            	<ul class="mainovertwol">
+            
+
+
+
+<?php
+      $tmp_typeid = $type['id'].getType2($type['id']);
+      $A = M("Archives")->where("typeid in(".$tmp_typeid.") and arcrank=0")->limit("0,5")->field("id,title")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'"><img src="'.$a['litpic'].'" width="88" height="88"/></a>
+                    	<p><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a></p>
+                        <div class="xingji"><img src="__PUBLIC__/images/xx5.jpg" /></div>
+                        <p>'.$a['click'].'人关注</p>
+                    </li>';
+          }
+          echo "<hr/>";
+    ?>
+   
+
+	
+					               
+                </ul>
+            </div>
+        </div>
+        <div class="searpic l">
+        <div class="com-title"><span id="cm">网友点评</span></div>
+        
+        	       <div class="sid" id="chisa">            
+<!--高速版-->
+<div id="SOHUCS"></div>
+<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: 'cys6CHLQ6',
+        conf: 'prod_6b87b12b2c856469b1ff5a11014f4aa9'
+    });
+</script>        
+
+
+        </div>
+    <div> 
+	
+	
+	<script type="text/javascript">
+    /*微信号内容底部640*60 创建于 2014-11-17*/
+    var cpro_id = "u1812343";
+</script>
+<script src="../cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script></div>
+        </div>
+        
+    </div>
+    <div class="mainr r">
+    	 <div class="ficetwo l">
+        	<p>猜您喜欢</p>
+            <ul class="ficeonepic">
+            
+            
+            <li><a href="weixin-show-id-18300.html" target="_blank" title="国防部发布微信公众号"><img src="Uploads/2015/05/27/5565488292fc6.jpg" /></a>
+                <p><a href="weixin-show-id-18300.html" target="_blank">国防部发布</a></p></li><li><a href="weixin-show-id-1161.html" target="_blank" title="平凡的企业家微信公众号"><img src="Uploads/2013/5/24/421ff35985bc4005987cbe5f550156f0.jpg" /></a>
+                <p><a href="weixin-show-id-1161.html" target="_blank">平凡的企业</a></p></li><li><a href="weixin-show-id-7789.html" target="_blank" title="宜家家居微信公众号"><img src="Uploads/2015/05/22/555e8ca291ea1.jpg" /></a>
+                <p><a href="weixin-show-id-7789.html" target="_blank">宜家家居</a></p></li><li><a href="weixin-show-id-11185.html" target="_blank" title="新闻正前方微信公众号"><img src="Uploads/2015/05/22/555f393300510.jpg" /></a>
+                <p><a href="weixin-show-id-11185.html" target="_blank">新闻正前方</a></p></li><li><a href="weixin-show-id-3819.html" target="_blank" title="腾讯游戏频道微信公众号"><img src="Uploads/2013/5/24/80993d9add7442fb898a239aa620fce9.jpg" /></a>
+                <p><a href="weixin-show-id-3819.html" target="_blank">腾讯游戏频</a></p></li><li><a href="weixin-show-id-8321.html" target="_blank" title="美食工坊微信公众号"><img src="Uploads/cjq/09c7c8db8ac71bcdb591568494a8383b.jpg" /></a>
+                <p><a href="weixin-show-id-8321.html" target="_blank">美食工坊</a></p></li>      
+            </ul>
+        </div>
+           <div style="margin-left: 50px;">
+<a target="_blank" href="../tui.rengzan.com/default.htm">
+<img src="__PUBLIC__/images/ggtuig.gif">
+</a>
+</div>
+        <div class="frilink l"> <script type="text/javascript">
+    /*300*60 创建于 2015-04-12*/
+    var cpro_id = "u2041737";
+</script>
+<script src="../cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+        </div>
+         <div class="hottwo l">
+    	<div class="column_col">
+        	<span class="l">最新收录</span>
+            <span class="r"><a href="weixin-news-id-90.html" target="_blank">更多>></a></span>
+        </div>
+        <div  class="hotthr">
+        	<ul>
+         
+            
+            
+                  <li><img src="Uploads/2015/11/21/5650123a90087.jpg" />
+                <a href="weixin-show-id-21009.html" title="博洋家纺旗舰店微信公众号">博洋家纺旗舰微信公众帐号</a></li><li><img src="Uploads/2015/11/21/564fe53008d29.jpg" />
+                <a href="weixin-show-id-21008.html" title="淘众福商城微信公众号">淘众福商城微信公众帐号</a></li><li><img src="Uploads/2015/11/21/564f476fc29cd.jpg" />
+                <a href="weixin-show-id-21007.html" title="金健二手汽车微信公众号">金健二手汽车微信公众帐号</a></li><li><img src="Uploads/2015/11/20/564f3d12cc412.jpg" />
+                <a href="weixin-show-id-21006.html" title="请人帮微信公众号">请人帮微信公众帐号</a></li><li><img src="Uploads/2015/11/20/564edf62af91a.png" />
+                <a href="weixin-show-id-21005.html" title="石家庄凯迈项目管理有限公司微信公众号">石家庄凯迈项微信公众帐号</a></li><li><img src="Uploads/2015/11/20/564e9b288cf2b.jpg" />
+                <a href="weixin-show-id-21004.html" title="屌乐圈微信公众号">屌乐圈微信公众帐号</a></li><li><img src="Uploads/2015/11/19/564df0ab26c47.jpg" />
+                <a href="weixin-show-id-21003.html" title="星火创客微信公众号">星火创客微信公众帐号</a></li><li><img src="Uploads/2015/11/19/564de506dbe85.jpg" />
+                <a href="weixin-show-id-21002.html" title="古典音乐微信公众号">古典音乐微信公众帐号</a></li><li><img src="Uploads/2015/11/19/564d8d4c43b75.jpg" />
+                <a href="weixin-show-id-21001.html" title="阿拉有点雷微信公众号">阿拉有点雷微信公众帐号</a></li><li><img src="Uploads/2015/11/21/5650129056995.jpg" />
+                <a href="weixin-show-id-21000.html" title="财我吧微信公众号">财我吧微信公众帐号</a></li>               
+            </ul>
+        </div>
+    </div>
+    <div class="hottwo l">
+    	<div class="column_col">
+        	<span class="l">微信帮助</span>
+            <span class="r"><a href="article-index-id-54.html" target="_blank">更多>></a></span>
+        </div>
+        <div class="hotfore">
+        	<ul>
+            	 <li><a href="article-show-id-453.html" target="_blank">微信朋友共享的优惠券违规处理措施</a></li><li><a href="article-show-id-452.html" target="_blank">微信平台朋友共享的优惠券使用规则</a></li><li><a href="article-show-id-451.html" target="_blank">如何快速申请微信卡券功能？</a></li><li><a href="article-show-id-450.html" target="_blank">微信公众平台群发消息粉丝是否有提示音</a></li><li><a href="article-show-id-449.html" target="_blank">微信公众平台群发人数的上限是多少？</a></li><li><a href="article-show-id-439.html" target="_blank">微信官方客服电话是多少？微信客服人工</a></li>                
+            </ul>
+        </div>
+    </div>
+    <div class="hotover">
+    	 <script type="text/javascript">
+    /*微信公众号右边底下300*250 创建于 2015-04-10*/
+    var cpro_id = "u2038795";
+</script>
+<script src="../cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>    </div>
+
+</div>
+    
+</div>
+<script type="text/javascript">
+ function xh(cur,id,type){
+        $.get("weixin-xh.html",{id:id,type:type},function(data){
+            if(data.status==1){
+                $(cur).children('strong').html(data.info);
+            }else{
+                
+                alert(data.info);
+            }
+            
+       });
+ }
+
+</script>
+<div id="wx">
+  手机扫码访问  <img alt="扔赞网手机端" src="__PUBLIC__/images/api.jpg" class="magictime tinRightIn"><br>
+  阅读更快更流畅
+</div>
+
+
+<div class="foote foot">
+	<div class="search">
+    <form method="post" action="/weixin-search-id-126.html">
+		<input type="text" class="seakeyl le" onfocus="javascript:if(this.value == '输入微信名称、ID、关键词搜索') this.value = ''; this.style.color='black';" onblur="if(this.value == '') {this.value = '输入微信名称、ID、关键词搜索';  this.style.color = '#bdbdbd';}" name="search" value="输入微信名称、ID、关键词搜索">
+		<input type="submit" value="" class="sercalll le">
+		<input type="hidden" name="__hash__" value="b3f641dcb4f1114e7128b00d106d2f97_79b4459a6c85bfb60ed2097dd503cf3e" /></form>
+    </div>
+	<div class="footeronehs">
+    	<div class="footermenu l">
+        	<h4>首页</h4>
+        <ul class="fishlast">
+        <li id="fishone"><a href="weixin-index-id-53.html">微信号</a></li>
+        <li><a href="photo-index-id-191">阅读</a></li>
+        <li id="fishone"><a href="article-index-id-55.html">资讯</a></li>
+        <li><a href="promotion-index-id-131.html">活动</a></li>
+        <li id="fishone"><a href="../tui.rengzan.com/default.htm">自媒体</a></li>
+        <li><a href="../bbs.rengzan.com/default.htm">论坛</a></li>
+      </ul>
+        </div>
+        <div class="footermenuone l">
+        	<h4>阅读</h4>
+            <ul class="fishlast">
+        <li id="fishone"><a href="weixin-index-id-1.html">新闻时事</a></li>
+        <li><a href="weixin-index-id-57.html">科技</a></li>
+        <li id="fishone"><a href="weixin-index-id-63.html">财经</a></li>
+        <li><a href="weixin-index-id-99.html">美食健康</a></li>
+        <li id="fishone"><a href="weixin-index-id-109.html">职场</a></li>
+        <li><a href="weixin-index-id-117.html">亲子</a></li>
+        <li><a href="weixin-index-id-53.html">更多</a></li>
+      </ul>   
+        </div>
+        <div class="footermenuth l">
+        	<h4>排行</h4>
+          <ul class="fishlast">
+        <li><a href="weixin-allorder.html">总榜</a></li>
+        <li><a href="weixin-allorder.html">日榜</a></li>
+      </ul>
+        </div>
+        <div class="footermenutwo l">
+        	<h4>自媒体</h4>
+            <ul class="fishlast">
+     <li><a href="../wx.rengzan.com/default.htm">微平台</a></li>
+        <li><a href="../tui.rengzan.com/default.htm">微接单</a></li>
+        <li><a href="../bianji.rengzan.com/default.htm">编辑器</a></li>
+      </ul>
+        </div>
+         <div class="footermenutwo l">
+        	<h4>会员</h4>
+               <ul class="fishlast">
+          <li><a href="../wx.rengzan.com/default.htm">微网站</a></li>
+        <li><a href="article-show-id-45.html">免审核</a></li>
+        <li><a href="content-index-id-138.html">推荐</a></li>
+      </ul>
+        </div>
+        <div class="footermenuone l">
+        	<h4>服务</h4>
+         <ul class="fishlast">
+        <li id="fishone"><a href="member-login.html">自助推荐</a></li>
+        <li><a href="../tui.rengzan.com/default.htm">接单</a></li>
+        <li id="fishone"><a href="#">版权投诉</a></li>
+        <li><a href="#">反馈</a></li>
+        <li id="fishone"><a href="guestbook-index.html" target="_blank">留言反馈</a></li>
+        <li><a href="guestbook-index.html" target="_blank">建议</a></li>
+      </ul>
+        </div>
+        <div class="footermenuth l">
+        	<h4>软件</h4>
+           <ul class="fishlast">
+       <li><a href="app.html">app客户端</a></li>
+        <li><a href="../ewm.rengzan.com/default.htm">二维码生成</a></li>
+        <li><a href="m">手机端</a></li>
+      </ul>
+        </div>
+       <div class="footerpic l"><img src="__PUBLIC__/images/oo_45.gif" /></div>
+    <div class="footerpic l"><img src="__PUBLIC__/images/oo_4f2.gif" /></div>
+    </div>
+     <div class="footernavi">
+    	<ul>
+        <a href="default.htm">微信导航</a> -
+      <a href="sitemap.html">网站地图</a>-
+     <a href="content-index-id-224.html">支付中心</a>-
+     <a href="content-index-id-173.html">申请合作</a>-
+      <a href="content-index-id-172.html">广告服务</a>-
+      <a href="#">客服中心</a>-
+      <a href="content-index-id-181.html">联系方式</a>-
+      <a href="content-index-id-180.html">服务条款</a>-
+      <a href="weixin-news-id-90.html">微信收录</a>-
+      <a href="content-index-id-180.html">扔赞介绍</a>
+        </ul>
+    </div>
+ <div class="footerover">
+    <p>Copyright 2015 rengzan.com All Rights Reserved.扔赞网 版权所有 京ICP备12010215号-1</p>
+  </div>
+  <div class="footerover">
+    <p>广告招商热线：023-58101029 商务合作热线：023-58101029</p>
+  </div>
+  <div class="footerover">
+    <p>扔赞微信不良信息举报电话：023-58101029 举报邮箱：zd_qinfei@126.com<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F8e673c69959fc69e2b05248dbc15bd6a' type='text/javascript'%3E%3C/script%3E"));
+</script></p>
+  </div>
+</div>
+<div class="QQ_S">
+  <div class="Q_top" onclick="HideFoot()"> <span class="signi"></span>收起</div>
+  <div class="Q_botm">
+    <div class="Q_pic">
+      <div class="Q_pic_hide"> <a href="../wpa.qq.com/msgrd@v=3&uin=1250084282&site=qq&menu=yes" target="_blank" title="微信收录咨询" rel="nofollow"><span class="hide_pic"></span>收录咨询 </a> </div>
+    </div>
+    <div class="Q_anser">
+      <div class="Q_anser_hide"> <a href="guestbook-index.html" title="微信提问"><span class="hide_pic1"></span>留言反馈</a> </div>
+    </div>
+    <div class="Q_sign">
+      <div class="Q_sign_hide" onclick="backToTop();"><a href="javascript:void(0)" title="返回顶部"><span class="hide_pic2"></span>返回顶部 </a></div>
+    </div>
+  </div>
+</div>
+<div class="QQ_S1">
+  <div class="Q_top1" onclick="ShowFoot()"> <span class="signj"></span>展开</div>
+  <div class="Q_botm1">
+    <div class="Q_pic1">
+      <div class="Q_pic1_hide"> <a href="../wpa.qq.com/msgrd@v=3&uin=1250084282&site=qq&menu=yes" rel="nofollow"><span class="hide_pic3"></span>QQ交谈</a></div>
+    </div>
+    <div class="Q_sign1">
+      <div class="Q_sign1_hide" onclick="backToTop();"><a href="javascript:void(0)">返回顶部</a></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/kffoot.js"></script>
+
+</body>
 </html>

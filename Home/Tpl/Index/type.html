@@ -1,35 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{$Think.config.SITENAME}_{$type.typename}_{$type.seotitle}</title>
-    <meta name="keywords" content="{$type.keywords}" />
-    <meta name="description" content="{$type.description}" />    
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  </head>
-  <body>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
 
-    <!--注意图片css一些文件放在 Home/Public 文件夹中-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+<title>{$Think.config.SITENAME}_{$type.typename}_{$type.seotitle}</title>
+<meta name="keywords" content="{$type.keywords}" />
+<meta name="description" content="{$type.description}" />
 
-      <!--图片链接-->
-      <img src="__PUBLIC__/images/logo.png">
-      <!--/.图片链接-->
+<meta name="baidu-site-verification" content="KciznqafrP" />
 
-      <h3>{$type.typename}</h3>
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="__PUBLIC__/images/favicon.ico" />
 
-      <volist id="vo" name="list">
-         <li><a href="{:U("Index/article",array("id"=>$vo["id"]))}">{$vo.title}</a></li> 
-      </volist>
+<link type="text/css" href="__PUBLIC__/css/newindex.css" rel="stylesheet" />
 
-      <br/>
-      <!--分页-->
-      {$page}
-      <!--/.分页-->
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+
+</head>
+
+<style type="text/css">
+.current_nav53{ border-bottom:3px solid #06a7e1;}
+.current_nav53 a{ color:#3399e0;}
+</style>
+
+<body>
+
+<include file="head" />
 
 
-  </body>
+        <div class="nav l">
+        	<div class="column l">
+            
+       
+            	<label>分类</label>
+                <ul>
+                	<li class="current"><a href="weixin-jzsearch.html">全部</a></li>
+                     <li class="title"><a href="weixin-jzsearch-catid-1.html" title="资讯阅读">资讯阅读</a></li><li class="title"><a href="weixin-jzsearch-catid-44.html" title="名人明星">名人明星</a></li><li class="title"><a href="weixin-jzsearch-catid-48.html" title="影音娱乐">影音娱乐</a></li><li class="title"><a href="weixin-jzsearch-catid-47.html" title="生活购物">生活购物</a></li><li class="title"><a href="weixin-jzsearch-catid-49.html" title="社区交友">社区交友</a></li><li class="title"><a href="weixin-jzsearch-catid-141.html" title="体育竞赛">体育竞赛</a></li><li class="title"><a href="weixin-jzsearch-catid-50.html" title="文化教育">文化教育</a></li><li class="title"><a href="weixin-jzsearch-catid-86.html" title="其它类别">其它类别</a></li>                 
+                 
+                </ul>		
+            </div>
+            
+            
+            
+                  <div class="columnks l">
+            	<label>类型</label>
+                <ul>
+                	   <li ><a href="weixin-jzsearch-catid-56.html" title="新闻">新闻</a></li><li ><a href="weixin-jzsearch-catid-57.html" title="科技">科技</a></li><li ><a href="weixin-jzsearch-catid-58.html" title="汽车">汽车</a></li><li ><a href="weixin-jzsearch-catid-59.html" title="女性">女性</a></li><li ><a href="weixin-jzsearch-catid-60.html" title="综合">综合</a></li><li ><a href="weixin-jzsearch-catid-61.html" title="小说">小说</a></li><li ><a href="weixin-jzsearch-catid-62.html" title="房产">房产</a></li><li ><a href="weixin-jzsearch-catid-63.html" title="财经">财经</a></li><li ><a href="weixin-jzsearch-catid-64.html" title="体育">体育</a></li><li ><a href="weixin-jzsearch-catid-65.html" title="公益">公益</a></li><li ><a href="weixin-jzsearch-catid-94.html" title="其它">其它</a></li><li ><a href="weixin-jzsearch-catid-193.html" title="福彩">福彩</a></li>                   
+                </ul>
+            </div>   
+
+                           <div class="column l">
+            	<label>地区</label>
+                <ul>
+                    <li class="title"><a href="weixin-jzsearch-province-2.html" title="北京">北京</a></li><li class="title"><a href="weixin-jzsearch-province-3.html" title="安徽">安徽</a></li><li class="title"><a href="weixin-jzsearch-province-4.html" title="福建">福建</a></li><li class="title"><a href="weixin-jzsearch-province-5.html" title="甘肃">甘肃</a></li><li class="title"><a href="weixin-jzsearch-province-6.html" title="广东">广东</a></li><li class="title"><a href="weixin-jzsearch-province-7.html" title="广西">广西</a></li><li class="title"><a href="weixin-jzsearch-province-8.html" title="贵州">贵州</a></li><li class="title"><a href="weixin-jzsearch-province-9.html" title="海南">海南</a></li><li class="title"><a href="weixin-jzsearch-province-10.html" title="河北">河北</a></li><li class="title"><a href="weixin-jzsearch-province-11.html" title="河南">河南</a></li><li class="title"><a href="weixin-jzsearch-province-12.html" title="黑龙江">黑龙江</a></li><li class="title"><a href="weixin-jzsearch-province-13.html" title="湖北">湖北</a></li><li class="title"><a href="weixin-jzsearch-province-14.html" title="湖南">湖南</a></li><li class="title"><a href="weixin-jzsearch-province-15.html" title="吉林">吉林</a></li><li class="title"><a href="weixin-jzsearch-province-16.html" title="江苏">江苏</a></li><li class="title"><a href="weixin-jzsearch-province-17.html" title="江西">江西</a></li><li class="title"><a href="weixin-jzsearch-province-18.html" title="辽宁">辽宁</a></li><li class="title"><a href="weixin-jzsearch-province-19.html" title="内蒙古">内蒙古</a></li><li class="title"><a href="weixin-jzsearch-province-20.html" title="宁夏">宁夏</a></li><li class="title"><a href="weixin-jzsearch-province-21.html" title="青海">青海</a></li><li class="title"><a href="weixin-jzsearch-province-22.html" title="山东">山东</a></li><li class="title"><a href="weixin-jzsearch-province-23.html" title="山西">山西</a></li><li class="title"><a href="weixin-jzsearch-province-24.html" title="陕西">陕西</a></li><li class="title"><a href="weixin-jzsearch-province-25.html" title="上海">上海</a></li><li class="title"><a href="weixin-jzsearch-province-26.html" title="四川">四川</a></li><li class="title"><a href="weixin-jzsearch-province-27.html" title="天津">天津</a></li><li class="title"><a href="weixin-jzsearch-province-28.html" title="西藏">西藏</a></li><li class="title"><a href="weixin-jzsearch-province-29.html" title="新疆">新疆</a></li><li class="title"><a href="weixin-jzsearch-province-30.html" title="云南">云南</a></li><li class="title"><a href="weixin-jzsearch-province-31.html" title="浙江">浙江</a></li><li class="title"><a href="weixin-jzsearch-province-32.html" title="重庆">重庆</a></li><li class="title"><a href="weixin-jzsearch-province-33.html" title="香港">香港</a></li><li class="title"><a href="weixin-jzsearch-province-34.html" title="澳门">澳门</a></li><li class="title"><a href="weixin-jzsearch-province-35.html" title="台湾">台湾</a></li>                
+                </ul>
+            </div>
+            
+                           
+        
+        <div class="submenu l">
+        	<label>排序</label>
+            <ul>
+            	<li class="hot"><a href="weixin-news-id-90.html">最新收录</a></li>
+                <li><a href="weixin-hot-id-88.html">今日最热</a></li>
+                <li><a href="weixin-order-id-89.html">关注总榜</a></li>
+                <li><a href="weixin-dianzan-id-53.html">扔赞总榜</a></li>
+                 <li><a href="weixin-allorder.html">排行榜大全</a></li>
+                <li><a href="weixin-area-id-87.html">按地域查找</a></li>
+                <li><a href="weixin-seac.html">按搜索查找</a></li>
+                <li><a href="#">按兴趣查找</a></li>
+            </ul>
+            <div class="fo r">共4828个筛选结果</div>
+            
+        </div>
+      </div>
+      
+      
+   
+       <div class="content l">
+      		<ul>     
+            
+     
+	  
+	 <volist id="vo" name="list">
+          
+<div class="wxlist" style="  height: 190px;">
+<div class="wxlist_one" style="  height: 190px;">
+<a href="{:U("Index/article",array("id"=>$vo["id"]))}" target="_blank" title="{$vo.title}兴趣部落"><img src="{$vo.litpic}" /></a>
+<div class="p-meta-title">
+<a title="{$vo.title}兴趣部落" target="_blank" href="{:U("Index/article",array("id"=>$vo["id"]))}">{$vo.title}</a></div>
+
+<p>
+<label>关注:</label>
+{$vo.click}人
+</p>
+
+<p id="colr">入库:{$vo['pubdate']|date="Y-m-d",###} </p>
+</div>   
+</div>
+				
+				
+	      </volist>  			
+			
+          
+            </ul>
+      </div>
+      
+      <div class="pagewx">
+      		 &nbsp;&nbsp; <span class='current'>1</span>  {$page}  </div>    </div>
+    <div class="dattj">
+    <h3 class="c-title-col"><a title="今日推荐" href="weixin-hot-id-88.html"><strong>今日推荐</strong></a><a class="c-recommend-button brg-btn" href="content-index-id-138.html">我要上推荐</a></h3>
+    <div class="clear"></div>
+    <div class="c-recommend">
+    <ul class="c-recommend-list clearfix">
+   
+	
+	
+	
+	
+	
+	
+	<?php 
+      $A = M("Archives")->where("arcrank=0 and channel=43")->limit("0,5")->field("id,title,litpic")->order("click desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a title="'.$a['title'].'" href="'.U("Index/article",array("id"=>$a['id,litpic'])).'"><img width="80" height="80" src="'.$a['litpic'].'"><h4>'.$a['title'].'</h4></a></li>';
+          }
+          
+    ?>  
+	
+	   
+	   
+	   </ul>
+    </div>
+    </div>
+    
+  <include file="foot" />
+
+</body>
 </html>
