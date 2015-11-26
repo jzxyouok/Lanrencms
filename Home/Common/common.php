@@ -365,8 +365,29 @@ function navigation($id,$add){
     return $result;
 }
 
+//缓存所有分类
+function getClasses($id){
+    $getClasses = F("getClasses");
+    if(empty($getClasses)){
+        $jg = M("Arctype");
+        $getClasses = $jg->field("id,reid,typename")->select();
+        F("getClasses", $getClasses);
+    } 
+    if($id){
+        foreach ($getClasses as  $value) {
+            if($id == $value['id']){
+                return $value;
+                break;
+            }
+        }
+    }
+    return $getClasses;  
+}
 
-
+function getClass_a($id){
+     $tmp = getClasses($id);
+     return "<a href='".U("Index/type",array("typeid"=>$tmp['id']))."'>".$tmp['typename']."</a>"; 
+}
 
 
 
