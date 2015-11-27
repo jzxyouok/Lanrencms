@@ -185,7 +185,8 @@ public function article_update(){
 			// 写入帐号数据
 			$P->pubdate = strtotime($this->_param("pubdate"));
 			$P->writer = $_SESSION["admin"]['userid'];
-			if($result	 =	 $P->save()) {
+			//if($result	 =	 $P->save()) 
+				$P->save();
 				$addon = D("Addon".$this->_param("channel"));
 				if(!$addon->create()) {
 					$this->error($addon->getError());
@@ -195,9 +196,9 @@ public function article_update(){
 					$addon->save();
 				}
 				$this->success('修改成功！');
-			}else{
-				$this->error('修改失败！');
-			}
+			//}else{
+			//	$this->error('修改失败！');
+			//}
 	    }
 }
 
