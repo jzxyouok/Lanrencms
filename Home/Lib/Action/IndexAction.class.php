@@ -18,6 +18,12 @@ class IndexAction extends Action {
 					 }
 					 $map['typeid'] = array('in', explode ( ',', $tmp_id ) );
 				}
+				if(!empty($_GET['channel'])){
+					$map['channel'] = $_GET['channel'];
+					$type['channeltype'] = $_GET['channel'];
+					$this->assign ( 'type', $type );
+				}
+
 			    $map1['arcrank'] = array('eq',0);
 			    $map2 = array_merge($map1, $map);
 
