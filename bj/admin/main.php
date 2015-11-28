@@ -73,7 +73,7 @@ document.write(date);
 </table>
 <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#FFD897">
   <tr>
-    <td bgcolor="#FFFBF4"><div align="center"><span class="STYLE1"><img src="images/ico_ps.gif" width="34" height="31" align="absmiddle" /> 备注：如有任何疑问，请QQ：997720527</span></div></td>
+    <td bgcolor="#FFFBF4"><div align="center"><span class="STYLE1"><img src="images/ico_ps.gif" width="34" height="31" align="absmiddle" /> 备注：如有任何疑问，请QQ：1330407081</span></div></td>
   </tr>
 </table>
 </body>

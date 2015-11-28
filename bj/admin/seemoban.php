@@ -1,7 +1,7 @@
 ﻿<?php
 @session_start();  
 //检测是否登录，若没登录则转向登录界面  
-if(!isset($_SESSION['ewema=997720527'])){  
+if(!isset($_SESSION['ewema=1330407081'])){  
     header("Location:login.html");  
     exit();  
 } 
@@ -42,7 +42,7 @@ $mbcode =  $myrow[3];
 
 <div id="previewbox">
         <div style="height:100%;overflow-y:scroll;padding-right:5px;">
-        <div style="font-size:18px;line-height:24px;font-weight:700">久恒果优，微信平台专家</div>
+        <div style="font-size:18px;line-height:24px;font-weight:700">久恒懒人，微信平台专家</div>
         <div><em style="color:#8c8c8c;font-style:normal;font-size:12px;">2014-11-19</em> <a style="font-size:12px;color:#607fa6" href="javascript:void(0);" id="post-user">jh99vucom</a> <a href="#" onclick="window.location.href='mblist.php';">返回</a></div>
         <div id="preview"><script id="container" name="content" type="text/plain" style="max-width:400px;height:564px;margin-top:5px;">
 	<?php echo $mbcode;?>

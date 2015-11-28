@@ -1,7 +1,7 @@
 ﻿<?php 
 @session_start();  
 //检测是否登录，若没登录则转向登录界面  
-if(!isset($_SESSION['ewema=997720527'])){  
+if(!isset($_SESSION['ewema=1330407081'])){  
     header("Location:login.html");  
     exit();  
 } 

@@ -4,7 +4,7 @@ require_once('../conn.php');
 $do = $_GET["do"];
 if($do=="logout")
 {
-unset($_SESSION['ewema=997720527']); 
+unset($_SESSION['ewema=1330407081']); 
 echo '<script>if(confirm("确认退出?")){alert("退出成功!");window.location.href="login.html";} </script>';
 }
 if($do=="login")
@@ -27,7 +27,7 @@ if($do=="login")
 						    //$lifeTime = 2 * 3600;  
                             //session_set_cookie_params($lifeTime);  
 							@session_start();  
-                            $_SESSION['ewema=997720527'] = $adminname1;  
+                            $_SESSION['ewema=1330407081'] = $adminname1;  
 				            echo "<script>window.location.href='wxadmin.php?do=login';</script>";
 			          }
 	            }
@@ -35,7 +35,7 @@ if($do=="login")
 			}
 
 }else{
-echo "欢迎关注懒人微信编辑器，请关注果优QQ:997720527";
+echo "欢迎关注懒人微信编辑器，请关注懒人QQ:1330407081";
 exit;
 }
 ?>
