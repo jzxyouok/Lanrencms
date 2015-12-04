@@ -9,24 +9,47 @@
 <meta name="keywords" content="{$type.typename}兴趣部落" />
 <meta name="description" content="{$type.typename}兴趣部落" />
 
-<meta name="baidu-site-verification" content="KciznqafrP" />
-
-<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="__PUBLIC__/images/favicon.ico" />
 
 <link type="text/css" href="__PUBLIC__/css/newindex.css" rel="stylesheet" />
-
 <script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
-
 </head>
-
 <style type="text/css">
 .current_nav53{ border-bottom:3px solid #06a7e1;}
 .current_nav53 a{ color:#3399e0;}
 </style>
-
 <body>
+<div class="header">
+<div class="logo"><div class="clear le inlogi" style="padding: 20px;"><a href="/" target="_blank" title="懒人部落最大兴趣部落导航平台！"><img src="{$Think.config.site_logo}" alt="懒人部落最大兴趣部落导航平台！" /></a></div><div class="cleara le"><img src="__PUBLIC__/images/hdjc_02.gif" alt="兴趣部落快速收录" title="兴趣部落快速收录"/></div>
+<div class="clearb l">
 
-<include file="head" />
+
+
+<form role="form" method="get" id="form1" action="{:U("Index/search")}">
+
+<input type="text" name="keyword" value="输入微信名称、ID、关键词搜索" class="seakey le" onfocus="javascript:if(this.value == '输入微信名称、ID、关键词搜索') this.value = ''; this.style.color='black';" onblur="if(this.value == '') {this.value = '输入微信名称、ID、关键词搜索';  this.style.color = '#bdbdbd';}" />
+<input type="submit"  class="sercall le" value="" />
+</form>
+
+
+</div>
+<div class="detfor l" id="detfor">
+<li class="wxadd"> 
+<a href="#" target="_blank" title="微信收录">提交</a></li>
+
+<li class="weibo"><a href="#" target="_blank">微博</a></li>
+<li class="wxapp"><a href="#" target="_blank" title="微信APP">APP</a></li>
+<li class="dlogin"> <a href="#" target="_blank">登录</a><span class="splite">|</span><a href="#" target="_blank">注册</a></li>
+</div></div></div>
+ <div class="hdmain">
+    	<div class="banner"><div class="ptadccd">
+    <div class="ptadcfcf"><script type="text/javascript">
+    /*960*90 创建于 2015-11-23*/
+    var cpro_id = "u2414342";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div>
+    </div></div>
+
 
 
         <div class="nav l">
@@ -125,7 +148,7 @@
       <div class="pagewx">
       		 &nbsp;&nbsp; <span class='current'>1</span>  {$page}  </div>    </div>
     <div class="dattj">
-    <h3 class="c-title-col"><a title="今日推荐" href="weixin-hot-id-88.html"><strong>今日推荐</strong></a><a class="c-recommend-button brg-btn" href="content-index-id-138.html">我要上推荐</a></h3>
+    <h3 class="c-title-col"><a title="今日推荐" href="#"><strong>今日推荐</strong></a><a class="c-recommend-button brg-btn" href="#">我要上推荐</a></h3>
     <div class="clear"></div>
     <div class="c-recommend">
     <ul class="c-recommend-list clearfix">

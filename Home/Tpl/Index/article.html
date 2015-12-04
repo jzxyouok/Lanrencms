@@ -136,7 +136,7 @@
         </div>
       <div class="mainhead l">
       		<span><strong>部落简介</strong></span>
-            <span class="copycondd"><a href="guestbook-index.html" target="_blank">报错/反馈</a></span>
+            <span class="copycondd"><a href="#" target="_blank">报错/反馈</a></span>
       </div>
       <div class="scroll l">
         	
@@ -146,7 +146,7 @@
   
         
                  	<span class="copycon l"><strong>最新文章</strong></span>
-            <span class="copycon r">看看部落主都在用什么<a href="#m" target="_blank">QQ兴趣部落编辑器</a>？</span>
+            <span class="copycon r">看看部落主都在用什么<a href="/bj/" target="_blank">QQ兴趣部落编辑器</a>？</span>
         </div>
       	 <div class="Paris l">
         	<ul>
@@ -191,16 +191,22 @@
         <div class="com-title"><span id="cm">网友点评</span></div>
         
         	       <div class="sid" id="chisa">            
-<!--打分版，用户可以对当前新闻、游戏或者应用等进行1-5级的评分-->
-<div id="SOHUCS"></div>
-<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="{$vo.id}" data-title="{$vo.title}" data-url="{$vo.url}"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
-    window._config = { showScore: true };
-    window.changyan.api.config({
-        appid: 'cys6CHLQ6',
-        conf: 'prod_6b87b12b2c856469b1ff5a11014f4aa9'
-    });
-</script>
+var duoshuoQuery = {short_name:"lanrenmb"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
 
 
         </div>
@@ -236,7 +242,7 @@
          <div class="hottwo l">
     	<div class="column_col">
         	<span class="l">最新收录</span>
-            <span class="r"><a href="weixin-news-id-90.html" target="_blank">更多>></a></span>
+            <span class="r"><a href="{:U("Index/type",array('channel'=>43))}   " target="_blank">更多>></a></span>
         </div>
         <div  class="hotthr">
         	<ul>
@@ -260,7 +266,7 @@
     <div class="hottwo l">
     	<div class="column_col">
         	<span class="l">微信帮助</span>
-            <span class="r"><a href="article-index-id-54.html" target="_blank">更多>></a></span>
+            <span class="r"><a href=" {:U("Index/type",array("typeid"=>90))} " target="_blank">更多>></a></span>
         </div>
         <div class="hotfore">
         	<ul>

@@ -29,12 +29,12 @@ if($do=="add"){
             <th width="100px">类型：</th>
             <th><label for="typestr"></label>
               <select name="typestr" id="typestr">
-                <option value="1" <?php if($type==1){echo 'selected="selected"';}?>>关注引导</option>
+                <option value="1" <?php if($type==1){echo 'selected="selected"';}?>>整套模板</option>
                 <option value="2" <?php if($type==2){echo 'selected="selected"';}?>>标题</option>
                 <option value="3" <?php if($type==3){echo 'selected="selected"';}?>>内容区</option>
-                <option value="4" <?php if($type==4){echo 'selected="selected"';}?>>互推账号</option>
+                <option value="4" <?php if($type==4){echo 'selected="selected"';}?>>图文样式</option>
                 <option value="5" <?php if($type==5){echo 'selected="selected"';}?>>分割线</option>
-                <option value="6" <?php if($type==6){echo 'selected="selected"';}?>>原文引导</option>
+                <option value="6" <?php if($type==6){echo 'selected="selected"';}?>>点赞赞赏</option>
                 <option value="7" <?php if($type==7){echo 'selected="selected"';}?>>其它</option>
             </select></th>
           </tr>
