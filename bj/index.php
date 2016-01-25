@@ -34,15 +34,15 @@ mysql_query("set names 'utf8'");
 <body>
 
 <div class="head der">
-         
+
 <div class="log lo">
-        	
+
 <div class="clear le"><a href="/" target="_blank" title="懒人部落最大兴趣部落导航平台！"><img src="http://buluo.lanrenmb.com/upload/0/e/e/d/thumb_565722377994f.png" /></a></div>
             <div class="topimg le">
            <div class="seachefot">
             <script type="text/javascript">
 $(document).ready(function(){
-  
+
   $('.seachefot li').mousemove(function(){
   $(".seachefot li.seaches").addClass("intro");
   $(this).find('.menu').show();
@@ -51,19 +51,19 @@ $(document).ready(function(){
  $(".seachefot li.seaches").removeClass("intro")
   $(this).find('.menu').hide();
   });
-  
+
 });
 </script>
-            
+
             <li class="seaches">
-             <span>频道</span> 
-       
+             <span>频道</span>
+
              <div class="menu l">
              	<div class="menu_box l">
                 	<ul>
                     	<li>
                         	<a href="/">首页</a>
-                            <a href="/Index/type/channel/43.html" target="_blank">兴趣部落</a>               
+                            <a href="/Index/type/channel/43.html" target="_blank">兴趣部落</a>
                             <a href="/Index/type/typeid/90.html" target="_blank" title="部落帮助">部落帮助</a>
                             <a href="/Index/type/typeid/94.html" target="_blank" title="部落营销">部落营销</a>
                            <a href="/Index/type/typeid/95.html" target="_blank" title="微信精选">微信精选</a>
@@ -80,18 +80,18 @@ $(document).ready(function(){
                             <a href="/Index/type/typeid/97.html" target="_blank">图案</a>
                             <a href="/Index/type/typeid/98.html" target="_blank">表情</a>
 							<a href="/Index/type/typeid/99.html" target="_blank">箭头</a>
-							<a href="/Index/type/typeid/100.html" target="_blank">爱心</a> 
+							<a href="/Index/type/typeid/100.html" target="_blank">爱心</a>
                         </li>
                         <li>
                         	<a href="#">其他功能</a>
                             <a href="/bj/">部落编辑器</a>
-                            
+
                         </li>
                     </ul>
 
                 </div>
                 <div class="menu_pic l">
-                
+
                     <div class="nabend l">
                     	<div class="l"><img src="/Public/images/code.png" /></div>
                         <div class="naover l">
@@ -101,10 +101,10 @@ $(document).ready(function(){
                     </div>
                 </div>
              </div>   </li>
-           
-            
+
+
             </div>
-            
+
             </div>
             <div class="clear_so le">
 
@@ -113,12 +113,12 @@ $(document).ready(function(){
 
                 	<input type="text" name="keyword" value="输入部落名称、ID、关键词搜索" class="seak sea" onfocus="javascript:if(this.value == '输入部落名称、ID、关键词搜索') this.value = ''; this.style.color='black';" onblur="if(this.value == '') {this.value = '输入部落名称、ID、关键词搜索';  this.style.color = '#bdbdbd';}"/>
                     <input type="submit" class="sercallf le" value="" />
-               
-				
+
+
 				</form>
             </div>
         <div class="detfor r">
-<li class="wxadd"> 
+<li class="wxadd">
 <a href="#" target="_blank" title="微信收录">提交</a></li>
 
 <li class="weibo"><a href="#" target="_blank">微博</a></li>
@@ -150,34 +150,14 @@ $(document).ready(function(){
                         <ul class="tabs" id="tabs">
 
                             <li class="editorlogo"><a href="/"><span style="font-size:25px;">懒人部落</span></a></li>
-                            <li><a href="javascript:void(0);" tab="tab1" class="current">整套模板</a></li><li><a href="javascript:void(0);" tab="tab2" class="">标题</a></li><li><a href="javascript:void(0);" tab="tab3" class="">内容</a></li><li><a href="javascript:void(0);" tab="tab4" class="">图文</a></li><li><a href="javascript:void(0);" tab="tab5" class="">分割</a></li><li><a href="javascript:void(0);" tab="tab6" class="">点赞赞赏</a></li><li><a href="javascript:void(0);" tab="tab7" class="">节日</a></li>
+                            <li><a href="/bj/zhengtao/" tab="tab1" >整套模板</a></li><li><a href="javascript:void(0);" tab="tab2" class="">标题</a></li><li><a href="javascript:void(0);" tab="tab3" class="">内容</a></li><li><a href="javascript:void(0);" tab="tab4" class="current">图文</a></li><li><a href="javascript:void(0);" tab="tab5" class="">分割</a></li><li><a href="javascript:void(0);" tab="tab6" class="">点赞赞赏</a></li><li><a href="javascript:void(0);" tab="tab7" class="">节日</a></li>
                         </ul>
                         <em class="fr"></em>
                     </div>
                     <div class="tplcontent">
                         <div id="colorpickerbox"></div>
                         <div>
-<div id="tab1" class="tab_con ">
-<ul class="content clearfix">
 
-<?php
-$res=mysql_query("select * from wxstyle where type=1 order by id desc" ,$link);
-if ($myrow = mysql_fetch_array($res))
-{
-  do {
-	$style =  $myrow[2];
-	$code =  $myrow[3];
-	echo "<!--".$style." -->";
-	echo '<li><div class="itembox">';
-	echo $code;
-	echo '</div></li>';
-  }
-  while ($myrow = mysql_fetch_array($res));
-}
-?>
-<br /><br />
-</ul>
-</div>
 <div id="tab2" class="tab_con dn">
 <ul class="content clearfix">
 <?php
@@ -187,7 +167,7 @@ if ($myrow = mysql_fetch_array($res))
   do {
 	$style =  $myrow[2];
 	$code =  $myrow[3];
-	echo "<!--".$style." -->";	
+	echo "<!--".$style." -->";
 	echo '<li><div class="itembox">';
 	echo $code;
 	echo '</div></li>';
@@ -207,7 +187,7 @@ if ($myrow = mysql_fetch_array($res))
   do {
 	$style =  $myrow[2];
 	$code =  $myrow[3];
-	echo "<!--".$style." -->";	
+	echo "<!--".$style." -->";
 	echo '<li><div class="itembox">';
 	echo $code;
 	echo '</div></li>';
@@ -218,7 +198,7 @@ if ($myrow = mysql_fetch_array($res))
 <br /><br />
 </ul>
 </div>
-<div id="tab4" class="tab_con dn">
+<div id="tab4" class="tab_con ">
 <ul class="content clearfix">
 <?php
 $res=mysql_query("select * from wxstyle where type=4 order by id desc" ,$link);
@@ -227,7 +207,7 @@ if ($myrow = mysql_fetch_array($res))
   do {
 	$style =  $myrow[2];
 	$code =  $myrow[3];
-	echo "<!--".$style." -->";	
+	echo "<!--".$style." -->";
 	echo '<li><div class="itembox">';
 	echo $code;
 	echo '</div></li>';
@@ -247,7 +227,7 @@ if ($myrow = mysql_fetch_array($res))
   do {
 	$style =  $myrow[2];
 	$code =  $myrow[3];
-	echo "<!--".$style." -->";	
+	echo "<!--".$style." -->";
 	echo '<li><div class="itembox">';
 	echo $code;
 	echo '</div></li>';
@@ -267,7 +247,7 @@ if ($myrow = mysql_fetch_array($res))
   do {
 	$style =  $myrow[2];
 	$code =  $myrow[3];
-	echo "<!--".$style." -->";	
+	echo "<!--".$style." -->";
 	echo '<li><div class="itembox">';
 	echo $code;
 	echo '</div></li>';
@@ -287,7 +267,7 @@ if ($myrow = mysql_fetch_array($res))
   do {
 	$style =  $myrow[2];
 	$code =  $myrow[3];
-	echo "<!--".$style." -->";	
+	echo "<!--".$style." -->";
 	echo '<li><div class="itembox">';
 	echo $code;
 	echo '</div></li>';
@@ -311,7 +291,7 @@ if ($myrow = mysql_fetch_array($res))
               </div>
                 </div>
             </div>
-      
+
         <div id="previewbox">
                 <div style="height:100%;overflow-y:scroll;padding-right:5px;">
                 <div style="font-size:18px;line-height:24px;font-weight:700">懒人部落，专注于兴趣部落</div>
@@ -323,7 +303,7 @@ if ($myrow = mysql_fetch_array($res))
         </div>
         <div class="fullshowbox">全屏</div>
         <div class="fullhidebox">退出</div>
-        <div id="phone">手机预览</div>  
+        <div id="phone">手机预览</div>
     </div>
     </body>
 </html>
