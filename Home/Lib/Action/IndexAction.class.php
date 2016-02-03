@@ -97,7 +97,7 @@ class IndexAction extends Action {
  					 $template = str_replace(".html","",$type['templist']);
 
 				}
-				$this->display ($template);				
+				$this->display ($template);
 
 	}
 
@@ -105,10 +105,10 @@ class IndexAction extends Action {
 public function search(){
 
 				if(!empty($_GET['keyword'])){
-					 $map['title'] = array('like',"%".$this->_param('keyword')."%"); 
+					 $map['title'] = array('like',"%".$this->_param('keyword')."%");
 	 				$this->assign ( 'keyword',  $this->_param('keyword') );
 				}else{
-					$this->error('关键字不能为空！');					
+					$this->error('关键字不能为空！');
 				}
 
 			    $map1['arcrank'] = array('eq',0);
@@ -183,7 +183,7 @@ public function search(){
  					 $template = str_replace(".html","",$type['templist']);
 
 				}
-				$this->display ($template);				
+				$this->display ($template);
 
 	}
 
@@ -195,7 +195,7 @@ public function search(){
         $id = $_REQUEST ["id"];
 		$vo = $model->where("id = ".$id)->find();
 		if($vo['arcrank'] == "-1"){
-			$this->error('文档未审核！');
+			$this->error('文档未审核！',C('site_url'));
 		}
 
 		//click+1
