@@ -67,7 +67,7 @@
             <small>文章</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="__APP__"><i class="fa fa-dashboard"></i> 首页</a></li>
             <li><a href="#">文章</a></li>
             <li class="active">编辑</li>
           </ol>
@@ -144,14 +144,15 @@
                   </div>                  
 
                   <?php
-                    $channelfield = M("Channelfield")->where("chid=".$vo['channel'])->select();
+                    $channelfield = M("Channelfield")->where("chid=".$vo['channel'])->order("sort")->select();
                     foreach ($channelfield as $v) {
                   ?>
                     <div class="form-group">
                       <label><?php echo $v['title'];?></label>
 
                       <?php if($v['typeid'] == "0" || $v['typeid'] == "1" || $v['typeid'] == "3" || $v['typeid'] == "4" ){ ?>
-                        <input type="text" name="<?php echo $v['fieldname'];?>"  class="form-control"  value="<?php echo $addon[$v['fieldname']];?>">
+                        <input type="text" name="<?php echo $v['fieldname'];?>"  class="form-control <?php if($v['check_empty']){echo "required";}
+?>"  value="<?php echo $addon[$v['fieldname']];?>">
                       <?php }elseif ($v['typeid'] == "2" ) { ?>
                           <textarea id="<?php echo $v['fieldname'];?>" name="<?php echo $v['fieldname'];?>"><?php echo $addon[$v['fieldname']];?></textarea>
                             <script src="__PUBLIC__/misc/ckeditor/ckeditor.js"></script>

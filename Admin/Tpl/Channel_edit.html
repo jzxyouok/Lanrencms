@@ -67,7 +67,7 @@
             <small>列表</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="__APP__"><i class="fa fa-dashboard"></i> 首页</a></li>
             <li><a href="#">频道管理</a></li>
             <li class="active">编辑</li>
           </ol>
@@ -91,6 +91,31 @@
                       <label>频道名称</label>
                       <input type="text" name="typename" class="form-control required"  value="{$vo.typename}">
                     </div>
+
+
+                  <div class="form-group">
+                     <label>是否支持会员投稿</label>
+                     <br/>
+                    <label>
+                    <input class="minimal-red" type="radio" value = "0" name="issend" <eq name="vo.issend" value="0">checked</eq> >否
+                    </label>
+                    <label>
+                    <input class="minimal-red" type="radio" value = "1" name="issend" <eq name="vo.issend" value="1">checked</eq> >是
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                     <label>会员稿件默认状态</label>
+                     <br/>
+                    <label>
+                    <input class="minimal-red" type="radio" value = "-1" name="arcsta" <eq name="vo.arcsta" value="-1">checked</eq> > 未审核
+                    </label>
+                    <label>
+                    <input class="minimal-red" type="radio" value = "0" name="arcsta" <eq name="vo.arcsta" value="1">checked</eq> > 已审核
+                    </label>
+                  </div>                  
+
+
                   </div><!-- /.box-body -->
                   <div class="box-footer">
                     <button  id="sub" class="btn btn-primary">提交</button>

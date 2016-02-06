@@ -631,7 +631,16 @@ class PublicAction extends Action {
 		}else{
 			$this->error('登录失败！');				
 		}
-	}	
+	}
+
+
+
+
+
+
+
+
+
 }
 
 ?>

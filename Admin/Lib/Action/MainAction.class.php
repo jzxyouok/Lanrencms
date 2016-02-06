@@ -8,5 +8,27 @@
 
 	    $this->display();
 	 }
+
+
+	 public function getAPI(){
+	 	switch ($_GET['type']) {
+	 		case 'getMemberCount':
+			 	$Model = new Model();
+				$vo = $Model->query("SELECT count(*) as item1,FROM_UNIXTIME(jointime,'%Y-%m-%d') as y  FROM `".C("DB_PREFIX")."member` group by y order by y   limit 0,30");
+				echo "var memberCount = ".json_encode($vo).";";
+	 			break;
+
+	 		case 'getArchivesCount':
+			 	$Model = new Model();
+				$vo = $Model->query("SELECT count(*) as item1,FROM_UNIXTIME(pubdate,'%Y-%m-%d') as y  FROM `".C("DB_PREFIX")."archives` group by y order by y   limit 0,30");
+				echo "var archiveCount = ".json_encode($vo).";";
+	 			break;
+
+	 		default:
+	 			break;
+	 	}
+	 }
+
+
  }
 ?>

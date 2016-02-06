@@ -5,7 +5,7 @@
 
      public function index(){
 				Cookie::set ( '_currentUrl_', __SELF__ );
-				$this->display ();	
+				$this->display ();
 	 }
 
 
@@ -14,7 +14,7 @@
 		$id = $_REQUEST ["id"];
 		$vo = $model->where("id = ".$id)->find();
 		$this->assign ( 'vo', $vo );
-		$this->display ();	
+		$this->display ();
 	}
 
 	public function update(){
@@ -49,12 +49,12 @@ public function insert(){
 
 public function delete() {
 	$model = M ("Arctype");
-	$id = $_REQUEST ["id"];	
+	$id = $_REQUEST ["id"];
 	if (isset ( $id )) {
 		deleteJG2($id);
 		$this->success ('删除成功！' );
-	} 
-}    
+	}
+}
 
 
 // 框架首页
@@ -69,8 +69,16 @@ public function delete() {
 				}
 				if(!empty($_GET['channel'])){
 					 $map['channel'] = array('eq',$_GET['channel']);
-				}				
-			    //读取数据库模块列表生成菜单项
+				}
+				if(!empty($_GET['writer'])){
+					 $map['writer'] = array('eq',$_GET['writer']);
+				}
+				if(!empty($_GET['arcrank'])){
+					 $map['arcrank'] = array('eq',$_GET['arcrank']);
+				}
+
+
+                //读取数据库模块列表生成菜单项
 				$model = M ("Archives" );
 
 				//排序字段 默认为主键名
@@ -132,28 +140,86 @@ public function delete() {
 				$this->assign ( 'currentPage', !empty($_REQUEST[C('VAR_PAGE')])?$_REQUEST[C('VAR_PAGE')]:1);
 
 				Cookie::set ( '_currentUrl_', __SELF__ );
-				$this->display ();	
+				$this->display ();
 
 	}
-	
-	
+
+
 public function article_delete() {
 	$model = M ("Archives");
-	$id = $_REQUEST ["id"];	
+	$id = $_REQUEST ["id"];
+	$ids = explode ( ',', $id );
 	if (isset ( $id )) {
-		$condition = array ("id" => array ('in', explode ( ',', $id ) ) );
+		$condition = array ("id" => array ('in', $ids ) );
+
+		foreach ($ids as $v) {
+			$mids = $model->where("id=".$v)->field("mid")->find();
+			$mid = $mids['mid'];
+			if($mid){
+				//插入积分日志
+		        $log = M ("Score_log" );
+		        $tmp = $log->where('typeid=-1 and mid='.$mid.' and aid='.$v)->find();
+		        if(empty($tmp)){
+		            $log->add(array('mid'=>$mid,'typeid'=>-1,'aid'=>$v,'addtime'=>time(),'score'=>"-".C("cfg_archive"),'summary'=>'删除文档减去积分'));
+
+			        //update user scores
+			        $Model = new Model();
+			        $Model->execute("update ".C("DB_PREFIX")."member set scores=scores-".C("cfg_archive")." where  mid=".$mid);
+		        }
+			}
+
+		}
+
 		$list=$model->where ( $condition )->delete();
 		if ($list!==false) {
 			$model = M ("Addon".$this->_param("channel"));
-			$condition = array ("aid" => array ('in', explode ( ',', $id ) ) );
+			$condition = array ("aid" => array ('in', $ids ) );
 			$list=$model->where ( $condition )->delete();
 			$this->success ('删除成功！' );
 		} else {
 			$this->error ('删除失败！');
 		}
-	} 
+	}
 
-}  
+}
+
+
+
+public function article_check() {
+	$model = M ("Archives");
+	$id = $_REQUEST ["id"];
+	$ids = explode ( ',', $id );
+	if (isset ( $id )) {
+		$condition = array ("id" => array ('in', $ids ) );
+		$list=$model->where ( $condition )->save(array("arcrank"=>0));
+		if ($list!==false) {
+
+			foreach ($ids as $v) {
+				$mids = $model->where("id=".$v)->field("mid")->find();
+				$mid = $mids['mid'];
+				if($mid){
+					//插入积分日志
+			        $log = M ("Score_log" );
+			        $tmp = $log->where('typeid=3 and mid='.$mid.' and aid='.$v)->find();
+			        if(empty($tmp)){
+			            $log->add(array('mid'=>$mid,'typeid'=>3,'aid'=>$v,'addtime'=>time(),'score'=>C("cfg_archive"),'summary'=>'发布文档获取积分'));
+
+				        //update user scores
+				        $Model = new Model();
+				        $Model->execute("update ".C("DB_PREFIX")."member set scores=scores+".C("cfg_archive")." where  mid=".$mid);
+			        }
+				}
+
+			}
+
+
+			$this->success ('审核成功！' );
+		} else {
+			$this->error ('审核失败！');
+		}
+	}
+
+}
 
 
 public function article_edit() {
@@ -166,7 +232,7 @@ public function article_edit() {
 	$addon = $model->where("aid = ".$id)->find();
 	$this->assign ( 'addon', $addon );
 
-	$this->display ();	
+	$this->display ();
 }
 
 
@@ -176,7 +242,7 @@ public function article_update(){
 			if(is_array($_POST[$key])){
 				$_POST[$key] = implode(",", $value);
 			}
-		}		
+		}
 		$P = D("Archives");
 		if(!$P->create()) {
 			$this->error($P->getError());
@@ -185,7 +251,7 @@ public function article_update(){
 			// 写入帐号数据
 			$P->pubdate = strtotime($this->_param("pubdate"));
 			$P->writer = $_SESSION["admin"]['userid'];
-			//if($result	 =	 $P->save()) 
+			//if($result	 =	 $P->save())
 				$P->save();
 				$addon = D("Addon".$this->_param("channel"));
 				if(!$addon->create()) {
@@ -209,6 +275,17 @@ public function article_insert(){
 				$_POST[$key] = implode(",", $value);
 			}
 		}
+
+        //唯一性判断
+		$addon = D("Addon".$_POST['channel']);
+        $channelField = M("Channelfield")->where("chid=".$_POST['channel']." and check_unique=1")->select();
+        foreach ($channelField as $v) {
+                $tmp = $addon->where($v['fieldname']."='".$_POST[$v['fieldname']]."'")->find();
+                if($tmp){
+                        $this->error('添加失败！'.$v['title'].'已存在');
+                }
+        }
+
 		$model = D ("Archives");
 	    $this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
 		if(!$model->create()) {
@@ -234,7 +311,7 @@ public function article_insert(){
 
 
 
-	 
-	 
+
+
   }
 ?>

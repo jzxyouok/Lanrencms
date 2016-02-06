@@ -67,7 +67,7 @@
             <small>添加</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="__APP__"><i class="fa fa-dashboard"></i> 首页</a></li>
             <li><a href="#">字段管理</a></li>
             <li class="active">添加</li>
           </ol>
@@ -90,6 +90,46 @@
                     <input type="text" name="title"  class="form-control required"  value="{$vo.title}">
                   </div>
               
+
+                  <div class="form-group">
+                    <label>排序 <span class="text-muted" style="font-size:12px;">顺序</span></label>
+                    <input type="text" name="sort"  class="form-control required number"  value="{$vo.sort}">
+                  </div>
+
+                 <div class="form-group">
+                     <label>是否列表显示</label>
+                     <br/>
+                    <label>
+                    <input class="minimal-red" type="radio" value = "1" name="displaylist" <eq name="vo.displaylist" value="1">checked</eq> >否
+                    </label>
+                    <label>
+                    <input class="minimal-red" type="radio" value = "0" name="displaylist" <eq name="vo.displaylist" value="0">checked</eq> >是
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                     <label>是否验证唯一</label>
+                     <br/>
+                    <label>
+                    <input class="minimal-red" type="radio" value = "0" name="check_unique" <eq name="vo.check_unique" value="0">checked</eq> >否
+                    </label>
+                    <label>
+                    <input class="minimal-red" type="radio" value = "1" name="check_unique" <eq name="vo.check_unique" value="1">checked</eq> >是
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                     <label>是否必填</label>
+                     <br/>
+                    <label>
+                    <input class="minimal-red" type="radio" value = "0" name="check_empty" <eq name="vo.check_empty" value="0">checked</eq> >否
+                    </label>
+                    <label>
+                    <input class="minimal-red" type="radio" value = "1" name="check_empty" <eq name="vo.check_empty" value="1">checked</eq> >是
+                    </label>
+                  </div>
+                  
+
 
                   </div><!-- /.box-body -->
                   <div class="box-footer">

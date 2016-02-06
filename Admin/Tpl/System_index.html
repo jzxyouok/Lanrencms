@@ -67,7 +67,7 @@
             <small>设置</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="__APP__"><i class="fa fa-dashboard"></i> 首页</a></li>
             <li><a href="#">系统管理</a></li>
             <li class="active">系统设置</li>
           </ol>
@@ -180,6 +180,34 @@
                     <label>版权</label>
                     <input type="text" name="copyright"  class="form-control"  value="<?php echo C('copyright');?>">
                   </div>
+
+
+                  <div class="box box-info">
+
+                      <div class="box-header with-border">
+                        <h3 class="box-title">会员积分设置</h3>
+                      </div>
+
+                      <div class="form-group">
+                        <label>充值获取积分</label>
+                        <input type="text" name="cfg_recharge"  class="form-control number"  value="<?php echo C('cfg_recharge');?>">
+                      </div>
+
+                      <div class="form-group">
+                        <label>注册会员获取积分</label>
+                        <input type="text" name="cfg_reg"  class="form-control number"  value="<?php echo C('cfg_reg');?>">
+                      </div>
+
+                      <div class="form-group">
+                        <label>每日签到获取积分</label>
+                        <input type="text" name="cfg_registration_score"  class="form-control number"  value="<?php echo C('cfg_registration_score');?>">
+                      </div>
+
+                      <div class="form-group">
+                        <label>发布文章获取积分</label>
+                        <input type="text" name="cfg_archive"  class="form-control number"  value="<?php echo C('cfg_archive');?>">
+                      </div>
+                 </div>
 
 
                  </div><!-- /.box-body -->

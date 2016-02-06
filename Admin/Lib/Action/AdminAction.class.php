@@ -41,7 +41,7 @@ public function insert(){
 		if(!$model->create()) {
 			$this->error($model->getError());
 		}else{
-			$P->pwd = md5($this->_param("pwd"));
+			$model->pwd = md5($this->_param("pwd"));
 			if($result	 =	 $model->add()) {
 				$this->success('添加成功！');
 			}else{

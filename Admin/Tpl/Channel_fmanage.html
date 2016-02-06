@@ -67,7 +67,7 @@
             <small>列表</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="__APP__"><i class="fa fa-dashboard"></i> 首页</a></li>
             <li><a href="#">字段管理</a></li>
             <li class="active">{$vo.typename}</li>
           </ol>
@@ -81,10 +81,10 @@
                 <div class="box-header">
                   <h3 class="box-title">
                     <div style="float:left;margin:0 8px;">
-                      <a href="{:U("Channel/fmanage_add",array("chid"=>$_GET["id"]))}" class="btn btn-block btn-default"><i class="fa fa-fw fa-plus"></i>添加</a>
+                      <a href="{:U("Channel/fmanage_add",array("chid"=>$_GET["id"],"ss"=>5))}" class="btn btn-block btn-default btn-sm"><i class="fa fa-fw fa-plus"></i>添加</a>
                     </div>
                     <div style="float:left;">
-                      <a href="#" id="ids0" class="btn btn-block btn-default" onclick="action('fmanage_del&id=','ids0');"> <i class="fa fa-fw fa-remove"></i>
+                      <a href="#" id="ids0" class="btn btn-block btn-default btn-sm" onclick="action('fmanage_del&id=','ids0');"> <i class="fa fa-fw fa-remove"></i>
                        删 除
                      </a>
                      </div>
@@ -100,6 +100,8 @@
                         <th>字段类型</th>
                         <th>字段显示名称</th>
                         <th>字段名</th>
+                        <th>排序</th>
+                        <th>是否列表显示</th>
                         <th>操作</th>
                       </tr>
                     </thead>
@@ -128,14 +130,19 @@
                          </td>
                          <td>{$vo['title']}</td>
                          <td>{$vo['fieldname']}</td>
+                         <td>{$vo['sort']}</td>
+                         <td>
+                           <eq name="vo.displaylist" value="0"><span class="label label-success">是</span></eq>
+                           <eq name="vo.displaylist" value="1"><span class="label label-danger">否</span></eq>
+                         </td>                         
                           <td>
-                            <a title="编辑" href="{:U("Channel/fmanage_edit",array("id"=>$vo['id']))}"><i class="fa fa-fw fa-edit"></i></a> | <a data-toggle="modal" data-target="#lc_confirm" onclick="lr_confirm('确定删除？','{:U("Channel/fmanage_del",array("id"=>$vo['id']))}');" title="删除"><i class="fa fa-fw fa-remove"></i></a>
+                            <a title="编辑" href="{:U("Channel/fmanage_edit",array("id"=>$vo['id'],"ss"=>5))}"><i class="fa fa-fw fa-edit"></i></a> | <a data-toggle="modal" data-target="#lc_confirm" onclick="lr_confirm('确定删除？','{:U("Channel/fmanage_del",array("id"=>$vo['id']))}');" title="删除"><i class="fa fa-fw fa-remove"></i></a>
                           </td>
                       </tr>
                     </volist>                       
                     </tbody>
                     <tfoot>
-                      <tr><td colspan="7">{$page}</td></tr>
+                      <tr><td colspan="9">{$page}</td></tr>
                     </tfoot>                    
                   </table>
                 </div><!-- /.box-body -->

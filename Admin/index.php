@@ -10,7 +10,7 @@
 
 //定义项目名称和路径
 define('APP_DEBUG', true); //调试模式开关
-define('APP_NAME', './Admin');
+define('APP_NAME', 'Admin');
 define('APP_PATH', './'); // 定义应用目录  当前目录
 
 
