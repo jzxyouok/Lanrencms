@@ -1,0 +1,114 @@
+      <!-- jQuery 2.1.4 -->
+      <script src="__PUBLIC__/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="__APP__" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>Lan</b>ren</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>懒人后台管理系统</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+          
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="<?php echo empty($_SESSION["member"]['face'])?"/Public/images/face.png":$_SESSION["member"]['face'];?>" class="user-image" alt="User Image">
+                  <span class="hidden-xs"><?php echo $_SESSION["member"]['userid'];?></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="<?php echo empty($_SESSION["member"]['face'])?"/Public/images/face.png":$_SESSION["member"]['face'];?>" class="img-circle" alt="User Image">
+                    <p>
+                      最后登陆时间：<?php echo date("m-d H:s",$_SESSION["member"]['logintime']);?>
+                      <small>当前积分:<?php echo $_SESSION["member"]['scores'];?></small>
+                      <small>IP:<?php echo $_SESSION["member"]['loginip'];?></small>
+                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="{:U("Member/index")}" class="btn btn-default btn-flat">修改</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="{:U("Public/logout")}" class="btn btn-default btn-flat">退出</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="<?php echo empty($_SESSION["member"]['face'])?"/Public/images/face.png":$_SESSION["member"]['face'];?>" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+              <p><?php echo $_SESSION["member"]['userid'];?></p>
+              <a href="#"><i class="fa fa-circle text-success"></i>在线</a>
+            </div>
+          </div>
+
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">功能管理</li>
+    
+            <li class="treeview <?php if($_GET['ss'] == 1){echo "active";} ?>">
+              <a href="#">
+                <i class="fa  fa-cog"></i><span>个人信息</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{:U("Member/index",array("ss"=>1))}"><i class="fa fa-circle-o"></i>信息设置</a></li>
+                <li><a href="{:U("Member/pwd",array("ss"=>1))}"><i class="fa fa-circle-o"></i>更改密码</a></li>
+                <li><a href="{:U("Member/log",array("ss"=>1))}"><i class="fa fa-circle-o"></i>日志记录</a></li>
+              </ul>
+            </li>
+
+       
+
+
+            <?php
+             $tmp = M("Channeltype")->where("issend=1")->field("id,typename")->select(); 
+             foreach ($tmp as $value) {
+            ?>
+              <li><a href="{:U("Type/article",array("channel"=>$value['id'],"ss"=>2))}"><i class="fa fa-circle-o"></i><?php echo $value['typename'];?></a></li>
+            <?php
+              } 
+            ?>
+
+
+
+
+            <li><a href="{:U("Member/registration")}"><i class="fa fa-circle-o text-yellow"></i> <span>每日签到</span></a></li>
+            <li><a href="{:U("Member/pay")}"><i class="fa fa-circle-o text-yellow"></i> <span>赞助懒人</span></a></li>
+            <li><a href="{:U("Public/logout")}"><i class="fa fa-circle-o text-red"></i> <span>退出</span></a></li>
+
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      

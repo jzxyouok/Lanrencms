@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{$Think.config.SITENAME}</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="__PUBLIC__/misc/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="__PUBLIC__/misc/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="__PUBLIC__/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="__PUBLIC__/dist/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="__PUBLIC__/misc/html5shiv.min.js"></script>
+        <script src="__PUBLIC__/misc/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .color-palette {
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+      }
+      .color-palette-set {
+        margin-bottom: 15px;
+      }
+      .color-palette span {
+        display: none;
+        font-size: 12px;
+      }
+      .color-palette:hover span {
+        display: block;
+      }
+      .color-palette-box h4 {
+        position: absolute;
+        top: 100%;
+        left: 25px;
+        margin-top: -40px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+        display: block;
+        z-index: 7;
+      }
+    </style>
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+      <include file="Public:head" />
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            赞助懒人
+            <small>列表</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="__APP__"><i class="fa fa-dashboard"></i>首页</a></li>
+            <li><a href="#">赞助懒人</a></li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+
+                <form id="form1" action="{:U('Member/paySubmit')}" method="post" class="pageForm required-validate">
+                <input type="hidden" name="mid" value="<?php echo $_SESSION [C ( 'USER_AUTH_KEY' )]; ?>"/>   
+                  <div class="box-header">
+                      <div style="text-align:center;">
+                          充值金额：（1元＝<?php echo C('cfg_recharge');?>积分）<input type="text" name="money" id="money" class="input-small required digits" placeholder="">（元）<button type="button" id="sub" class="btn btn-primary btn-sm" type="button"><i class="fa fa-fw fa-rmb"></i>确定</button>                       
+                      </div>
+                  </div><!-- /.box-header -->
+                </form>
+
+                <div class="box-body">
+                  <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>订单号</th>
+                        <th>产品名称</th>
+                        <th>生成日期</th>
+                        <th>金额</th>
+                        <th>状态</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <volist name="list" id="vo">
+                         <tr>
+                            <td>{$vo.buyid}</td>
+                            <td>{$vo.pname}({$vo.oldinfo})</td>
+                            <td>{$vo.mtime|date="Y-m-d H:i:s",###}</td>
+                            <td>{$vo.money}</td>
+                            <td>
+                                <eq name="vo.sta" value="0">
+                                    <span class="label label-warning">未付款</span>
+                                    <a href="{:U("Member/payUrl",array("aid"=>$vo['aid']))}" target='_blank'>去付款</a>
+                                </eq>
+                                <eq name="vo.sta" value="1">
+                                    <span class="label label-success">已付款</span>
+                                </eq>
+                            </td>
+                        </tr>
+                     </volist>    
+                    </tbody>
+                    <tfoot>
+                      <tr><td colspan="5">{$page}</td></tr>
+                    </tfoot>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      
+    <include file="Public:footer" />
+
+     
+    </div><!-- ./wrapper -->
+
+  </body>
+</html>

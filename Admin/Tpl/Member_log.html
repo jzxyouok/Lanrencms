@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{$Think.config.SITENAME}</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="__PUBLIC__/misc/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="__PUBLIC__/misc/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="__PUBLIC__/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="__PUBLIC__/dist/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="__PUBLIC__/misc/html5shiv.min.js"></script>
+        <script src="__PUBLIC__/misc/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .color-palette {
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+      }
+      .color-palette-set {
+        margin-bottom: 15px;
+      }
+      .color-palette span {
+        display: none;
+        font-size: 12px;
+      }
+      .color-palette:hover span {
+        display: block;
+      }
+      .color-palette-box h4 {
+        position: absolute;
+        top: 100%;
+        left: 25px;
+        margin-top: -40px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+        display: block;
+        z-index: 7;
+      }
+    </style>
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+      <include file="Public:head" />
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            日志
+            <small>列表</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="__APP__"><i class="fa fa-dashboard"></i>首页</a></li>
+            <li><a href="#">日志</a></li>
+          </ol>
+        </section>
+
+    <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+
+            <div class="box box-primary">
+                <!-- form start -->
+                <form role="form" method="get" id="form1" action="{:U("Member/log",array("ss"=>2))}" class="pageForm required-validate">
+                  <div class="box-body">
+
+                    <div class="form-group">
+                      <label>开始时间</label>
+                          <div class="input-group">
+                              <div class="input-group-addon">
+                              <i class="fa fa-calendar"></i>
+                              </div>
+                              <input type="text" class="form-control pull-right" id="startdate" name="startdate" value="<?php echo $_GET['startdate']; ?>">
+                          </div><!-- /.input group -->
+                          <script>
+                          $(function () {
+                          //Date range picker with time picker
+                          $('#startdate').daterangepicker({singleDatePicker: true, timePickerIncrement: 1,timePicker: false,timePicker12Hour:false, format: 'YYYY-MM-DD'});
+                          });
+                          </script> 
+                    </div> 
+
+
+
+                    <div class="form-group">
+                      <label>结束时间</label>
+                          <div class="input-group">
+                              <div class="input-group-addon">
+                              <i class="fa fa-calendar"></i>
+                              </div>
+                              <input type="text" class="form-control pull-right" id="enddate" name="enddate" value="<?php echo $_GET['enddate']; ?>">
+                          </div><!-- /.input group -->
+                          <script>
+                          $(function () {
+                          //Date range picker with time picker
+                          $('#enddate').daterangepicker({singleDatePicker: true, timePickerIncrement: 1,timePicker: false,timePicker12Hour:false, format: 'YYYY-MM-DD'});
+                          });
+                          </script> 
+                    </div> 
+
+                    <div class="form-group">
+                      <label>登陆名</label>
+                      <input type="text" name="userid" value="<?php echo $_GET['userid'];?>"  class="form-control">
+                    </div> 
+
+
+                  </div><!-- /.box-body -->
+                  <div class="box-footer" style="text-align:center;">
+                    <button  id="sub" class="btn btn-primary">查询</button>
+                  </div>
+                </form>
+              </div><!-- /.box -->
+
+
+              <div class="box">
+                <div class="box-body">
+                  <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>会员名</th>
+                        <th>时间</th>
+                        <th>积分情况</th>
+                        <th>类型</th>
+                        <th>说明</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <volist id="vo" name="list">
+                          <tr>
+                            <td>
+                            <?php
+                              $tmp = M("Member")->where("mid=".$vo['mid'])->field("userid")->find();
+                              echo $tmp['userid'];     
+                            ?>
+                            </td>
+                            <td>{$vo.addtime|date="Y-m-d H:i:s",###}</td>
+                            <td>{$vo.score}</td>
+                            <td>
+                                 <eq name="vo.typeid" value="1">
+                                    签到
+                                 </eq>
+                                 <eq name="vo.typeid" value="2">
+                                    注册
+                                 </eq>
+                                 <eq name="vo.typeid" value="3">
+                                    发布文章
+                                 </eq>
+                                  <eq name="vo.typeid" value="4">
+                                   充值
+                                 </eq>
+                                <eq name="vo.typeid" value="-1">
+                                    删除文章
+                                 </eq>
+                                 <eq name="vo.typeid" value="-2">
+                                    违规文章
+                                 </eq>
+                            </td>
+                            <td>{$vo.summary}</td>
+                          </tr>
+                        </volist>                    
+                    </tbody>
+                    <tfoot>
+                      <tr><td colspan="5">{$page}</td></tr>
+                    </tfoot>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+
+
+
+      </div><!-- /.content-wrapper -->
+
+      
+    <include file="Public:footer" />
+
+
+
+      <script type="text/javascript">
+        var ids = "";
+        function addids(bb){
+            if($(bb).is(':checked')){
+              ids+=","+$(bb).val(); 
+            }else{
+               ids = ids.replace(","+$(bb).val(),""); 
+            }
+            //console.log(ids);
+        }
+        var is_all = true;
+        function addids_all(){
+          if(is_all){
+            $("input[name='id']").attr("checked","true"); 
+            is_all = false;
+
+            $("input[name='id']:checkbox:checked").each(function(){ 
+              ids+=","+$(this).val(); 
+            });
+          }else{
+            $("input[name='id']").removeAttr("checked");
+            is_all = true;
+            ids = "";
+          }
+        }
+        
+        function action(aa,bb){
+          if(ids == ""){
+            alert("请选择"); return;
+          }
+          if(ids !==""){
+            ids = ids.substring(1);
+          }          
+          tmp = "index.php?m=Member&a="+aa;          
+          $("#"+bb).attr("href",tmp+ids);
+        }
+      </script>
+
+
+
+
+
+  <!-- date-range-picker -->
+  <script src="__PUBLIC__/misc/moment.min.js"></script>
+  <script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js"></script>
+   <!-- daterange picker -->
+  <link rel="stylesheet" href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css">
+    
+    </div><!-- ./wrapper -->
+
+  </body>
+</html>
