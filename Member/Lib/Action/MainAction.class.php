@@ -1,13 +1,13 @@
 <?php
  class MainAction extends CommonAction{
      public function index(){
-     	
+
      	$model = M ("Member" );
     	$member = $model->where('mid='.$_SESSION [C ( 'USER_AUTH_KEY' )])->find();
 		$this->assign ( 'member', $member );
 
 
-	        $model = M ("Notice" );        
+	        $model = M ("Notice" );
 	        //排序字段 默认为主键名
 	        if (!empty ( $_REQUEST ['_order'] )) {
 	                $order = $_REQUEST ['_order'];
@@ -79,7 +79,7 @@
 	 	switch ($_GET['type']) {
 	 		case 'getArchivesCount':
 			 	$Model = new Model();
-				$vo = $Model->query("SELECT count(*) as item1,FROM_UNIXTIME(pubdate,'%Y-%m-%d') as y  FROM `".C("DB_PREFIX")."archives`  where mid=".$_SESSION [C ( 'USER_AUTH_KEY' )]." group by y order by y   limit 0,30");
+				$vo = $Model->query("SELECT count(*) as item1,FROM_UNIXTIME(pubdate,'%Y-%m-%d') as y  FROM `".C("DB_PREFIX")."archives`  where mid=".$_SESSION [C ( 'USER_AUTH_KEY' )]." group by y order by y desc  limit 0,30");
 				echo "var archiveCount = ".json_encode($vo).";";
 	 			break;
 
