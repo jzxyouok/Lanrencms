@@ -594,7 +594,7 @@ class PublicAction extends Action {
 					$this->error('该用户名已被注册，请重新注册！');
 				}
 
-				$tmp = M("Member")->where("userid='".$email."'")->field("userid")->find();
+				$tmp = M("Member")->where("email='".$email."'")->field("userid")->find();
 				if($tmp){
 					$this->error('该Email已被注册，请重新注册！');
 				}
