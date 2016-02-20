@@ -130,11 +130,6 @@
                   </div><!-- /.form group -->
 
 
-                  <div class="form-group">
-                    <label>点击数</label>
-                    <input type="text" name="click"  class="form-control required"  value="{$vo.click}">
-                  </div>
-
 
                   <?php
                     $channelfield = M("Channelfield")->where("chid=".$vo['channel'])->order("sort")->select();
