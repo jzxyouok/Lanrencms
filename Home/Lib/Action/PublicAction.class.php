@@ -21,7 +21,7 @@
 
 
 class PublicAction extends Action {
-	
+
 
 	function _initialize() {
 
@@ -155,7 +155,7 @@ class PublicAction extends Action {
 
 	}
 
-	
+
 
 //	public function menu() {
 
@@ -408,7 +408,7 @@ class PublicAction extends Action {
 
 			if(!$vo){
 
-				$this->error('帐号不存在或已禁用！');	
+				$this->error('帐号不存在或已禁用！');
 
 			}
 
@@ -428,7 +428,7 @@ class PublicAction extends Action {
 
             //if($vo['a_type']=='manage') {
 
-            $_SESSION['administrator']		=	true; 
+            $_SESSION['administrator']		=	true;
 
             //}
 
@@ -439,12 +439,12 @@ class PublicAction extends Action {
             $data = array();
 			$data['id']	=	$vo['id'];
 			$data['logintime']	=	$time;
-			$data['loginip']	=	$ip;			
+			$data['loginip']	=	$ip;
 			$Admin->save($data);
 
 			// 缓存访问权限
             //RBAC::saveAccessList();
-			$this->success('登录成功！',U("Main/index"));				
+			$this->success('登录成功！',U("Main/index"));
 
 		//}
 
@@ -563,14 +563,14 @@ class PublicAction extends Action {
 
 		}
 		echo iconv('UTF-8', 'GBK//ignore',$tmp);
-		exit;		 
+		exit;
 	}
 
 	public function reg() {
 			if ($_SESSION [C ( 'USER_AUTH_KEY' )]){
 				header("Location: ".U("Main/index"));
 				exit;
-			}		 
+			}
 
 			if($_POST){
 				$userid = I("post.userid");
@@ -602,7 +602,7 @@ class PublicAction extends Action {
 					$rank = M("Arcrank")->where("rank=".C("cfg_mb_rank"))->field("scores")->find();
 					if($rank){
 						M("Member")->where(array('userid' => $userid))->save(array('rank'=>C("cfg_mb_rank"),'scores'=>$rank['scores']));
-					} 
+					}
 					//insert log
 					$model = M ("Score_log" );
 			    	$model->add(array('mid'=>$mid,'typeid'=>2,'addtime'=>time(),'score'=>$rank["scores"],'summary'=>'注册获取积分'));
@@ -612,7 +612,7 @@ class PublicAction extends Action {
 				}
 		   }else{
 	   			$this->display();
-		   }	
+		   }
 
 	}
 
@@ -626,12 +626,12 @@ class PublicAction extends Action {
             $_SESSION[C('USER_AUTH_KEY')]	=	$vo['mid'];
             $_SESSION['userid']		=	$vo['userid'];
             $_SESSION['logintime']		=	$vo['logintime'];
-            $_SESSION['administrator']		=	true; 
-			$this->success('登录成功！',U("Main/index"));				
+            $_SESSION['administrator']		=	true;
+			$this->success('登录成功！',U("Main/index"));
 		}else{
-			$this->error('登录失败！');				
+			$this->error('登录失败！');
 		}
-	}	
+	}
 }
 
 ?>

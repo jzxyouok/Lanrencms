@@ -557,7 +557,7 @@ class PublicAction extends Action {
 
 	public function htmlLogin() {
 		if ($_SESSION [C ( 'USER_AUTH_KEY' )]){
-			$tmp = 'document.write("<a href=\"'.U('Main/index').'\" style=\"font-weight:bold;color:red;\">'.$_SESSION['member']['userid'].'</a> <span class=\"splite\">|</span> <a style=\"font-weight:bold;\" href=\"'.U('Public/logout').'\">退出</a>");';
+			$tmp = 'document.write("<span style=\"width:40px;overflow:hidden;float:left;\"><a href=\"'.U('Main/index').'\" style=\"font-weight:bold;color:red;\">'.$_SESSION['member']['userid'].'</a></span> <span class=\"splite\" style=\"float:left;\">|</span> <span style=\"float:left;\"><a style=\"font-weight:bold;\" href=\"'.U('Public/logout').'\">退出</a></span>");';
 		}else{
 			$tmp =  'document.write("<a href=\"'.U('Index/index').'\">登陆</a> <span class=\"splite\">|</span> <a href=\"'.U('Public/reg').'\">注册</a>");';
 
