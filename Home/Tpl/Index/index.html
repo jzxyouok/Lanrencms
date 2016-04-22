@@ -333,7 +333,11 @@ $(window).load(function() {
       $A = M("Archives")->where("arcrank=0 and channel=43")->limit("0,3")->field("id,title,litpic,click")->order("pubdate desc")->select();
         foreach ($A as $a) {
              echo ' <li><span class="r">关注'.$a['click'].'</span><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'兴趣部落"> <img src="'.$a['litpic'].'" /></a>
-            <a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a>
+            <a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'">'.cn_substr($a['title'],20).'</a>
+
+
+
+
           </li>';
           }
          
